@@ -47,9 +47,11 @@ const Buy_crops = () => {
                    cropname={val.crop_name_id.crop_namee} 
                    varietyname={val.variety_id}
                    quantity={val.quantity}
+                   price={val.price}
                    sellername={val.seller_id.name}
                    sellerphoneno={val.seller_id.phoneno}
                    selleremail={val.seller_id.email}
+                   
 
                    
                    

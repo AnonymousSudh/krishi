@@ -1,27 +1,8 @@
-.dd{
-    font-size: 20px;
-    background-color: rgb(6, 92, 92);
-    height: 100vh;
-}
-
-.showdata table, th, td{
-    /* border:1px solid black; */
-}
-/* table {
-    border:1px solid black;
-    border-spacing: 0px;
-  } */
-
-td{
-    padding: 10px 90px;
 
 
-}
 .showDataa{
     width: 100vw;
     height: 80vh;
-
-    /* border: 1px solid red; */
     padding-top: 30px;
     display: flex;
     justify-content: center;
@@ -37,25 +18,7 @@ td{
     align-items: center;
     /* width: max-content; */
 }
-.dd{
-    /* border: 1px solid red; */
-}
-.select_all_crop{
-    border:1px solid red;
-    font-size: 30px;
-    display: flex;
-    justify-content: space-around;
-
-}
 
 
-.buy_card{
-    border:1px solid red;
-    width: 90vw;
-    display: flex;
-    /* flex-direction: column; */
-    align-items: center;
-    justify-content: center;
-    background: rgb(255, 234, 234);
-    backdrop-filter: blur(30px);
-}
+
+

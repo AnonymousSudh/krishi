@@ -3,15 +3,18 @@
     width: 90vw;
     height: 23vh;
     display: flex;
-    /* background: rgb(184, 255, 255); */
-    /* backdrop-filter: blur(20px); */
+    background-image: url('../images/44.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+
     /* color: white; */
     margin-top: 30px;
-    /* flex-direction: column; */
+
 }
 .card_value{
     /* border: 2px solid greenyellow; */
     width: 90vw;
+    backdrop-filter: blur(10px);
 }
 .name_holder{
     margin-left: 2%;

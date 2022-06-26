@@ -15,6 +15,7 @@ function Card(props) {
                         <h1>{props.cropname}</h1>
                         <h1>{props.varietyname}</h1>
                         <h1>{props.quantity}</h1>
+                        <h1>{props.price}</h1>
                     </div>
 
                     <div className="seller_detail_holder">

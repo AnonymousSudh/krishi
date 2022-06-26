@@ -1,6 +1,7 @@
 .main_dcc {
   display: flex;
   flex-direction: row;
+  height: 10vh;
 }
 
 .first {
