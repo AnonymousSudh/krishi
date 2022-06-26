@@ -24,7 +24,7 @@ router.get('/getallcropdata', async (req, res) => {
 
 
         
-        console.log(trail);
+        // console.log(trail);
 
 
         res.send(buy_data)

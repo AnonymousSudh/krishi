@@ -1,44 +1,70 @@
-import React from 'react';
-import { NavLink, Route, Switch,useHistory } from "react-router-dom";
+import React, { useEffect, useState } from 'react';
+import { NavLink, Route, Switch, useHistory } from "react-router-dom";
 // import Sell_crops from './Sell_crops';
 import '../style/navbar.css'
+import Default from '../images/user.png';
+
 
 function Navbar() {
+
+
+    const [background, setBackground] = useState(Default);
     const history = useHistory();
 
-    const openhome=()=>{
+    const openhome = () => {
         history.push('/home');
 
+
     }
+
+
 
     // const dara = api.openweathermap.org/data/2.5/weather?zip=232101,91&appid= b47eaedf9047216f8f8ccccb6cf674b5;
     const open_sell_dialog = () => {
-        // console.log("hello");
-        // <Sell_crops/>
+
 
         document.getElementsByClassName("sell_crop_div_at_home_jsx")[0].style.display = "flex";
-        // document.getElementsByClassName("form_holder_div")[0].add('open');
-
     }
 
+    const css = {
+        backgroundImage: `url(${background})`
+    };
     // const logout =(req,res)=>{
     //     console.log(req.cookies.jwtoken);
-        
+
     // }
+    const setprofilepic = () => {
+        const profileurl = localStorage.getItem("profie_pic_url");
+        console.log(profileurl);
+        if (profileurl) {
+            // document.getElementsByClassName('profile')[0].style= background
+            setBackground(profileurl)
+
+        }
+    }
 
 
-
+    useEffect(() => {
+        setprofilepic();
+    }, [])
 
     return (
         <>
+            <div className="main_dcc">
 
-            <div className="header">
-                <div className="logo">
-                    <img src={require('../images/logo.png')} alt="logo here" onClick={openhome}/>
+                <div className="first">
+
+                    {/* <div className="header"> */}
+                    {/* <div className="logo"> */}
+                    <img src={require('../images/logo.png')} alt="logo here" onClick={openhome} />
+            
+
                 </div>
 
 
-                <div className="nd_div">
+                <div className="second">
+
+                    {/* <div className="nd_div"> */}
 
 
 
@@ -46,24 +72,27 @@ function Navbar() {
                         <li style={{ listStyle: "none" }}>
                             <NavLink exact to="/home"> Home </NavLink>
                             <a href='https://agricoop.nic.in/en/ministry-major-schemes'>Govt plan</a>
-                            <NavLink exact to="/About">My Profile</NavLink>
                             <NavLink exact to="/Contactus">Contact Us</NavLink>
                         </li>
                     </div>
 
 
                     <div className="buy_sell">
-                        <NavLink exact to="/Buy_crops"> <button className='buy'>Buy</button> 
+                        <NavLink exact to="/Buy_crops"> <button className='buy'>Buy</button>
                         </NavLink>
                         <button className='sell' onClick={open_sell_dialog}>Sell</button>
-                    
+
                     </div>
 
-                    <div className="logout">
-                        <NavLink exact to="./logout"><button classname="logout">logout</button></NavLink>
+                    <div className="myprofile">
+                        <NavLink exact to="/About"><div className="profile" style={css} ></div></NavLink>
+
                     </div>
 
+                    {/* </div> */}
                 </div>
+
+
             </div>
         </>
     )

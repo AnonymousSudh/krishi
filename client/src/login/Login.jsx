@@ -17,7 +17,8 @@ const Login = () => {
 
     const responseGoogle = async (response) => {
         // console.log("this is response");
-        console.log(response);
+        // console.log(response.profileObj.imageUrl);
+        localStorage.setItem("profie_pic_url",response.profileObj.imageUrl)
         const res = await fetch("/signup", {
             method: "POST",
             headers: {

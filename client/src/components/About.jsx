@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Navbar from './Navbar';
 import "../style/about.css";
-import { useHistory } from 'react-router-dom';
+import { useHistory,NavLink } from 'react-router-dom';
 
 
 
@@ -114,6 +114,11 @@ const About = () => {
                                     <h3 className='usertye_holder'>{userData.usertype}</h3>
                                 </div>
                             </div>
+
+                            
+                    <div className="logout">
+                        <NavLink exact to="./logout"><button className="logout">logout</button></NavLink>
+                    </div>
                         </div>
 
                     </div>
