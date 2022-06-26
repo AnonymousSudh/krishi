@@ -3,7 +3,7 @@ const router = express.Router();
 require('../db/connection');
 const sell_crop_schema = require("../model/sell_crop_schema")
 
-// router.get("/Sell_crops",(req,res)=>{
+// router.get("/Sell_crops",(req,res)=> {
 //     res.send("hello from the express side")
 // });
 

@@ -112,6 +112,7 @@ function Sell_crops() {
     //   });
 
   }
+  
 
   const selectvariety = async () => {
     const cropname = document.getElementById('cropdata').value

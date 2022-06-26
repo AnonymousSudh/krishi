@@ -86,6 +86,7 @@ router.get('/fetch_crop_id', async(req,res)=>{
 })
 
 
+
 router.get('/getvarietyname', async(req,res)=>{
     const varietyname = await admin_varietywithcropid_list
 })
@@ -102,7 +103,8 @@ router.post('/sendcropname',async(req,res)=>{
     // const getvarietyname =await admin_varietywithcropid_list.find().populate("crop_id")
     // console.log(getvarietyname);
     // console.log(getvarietyname[0].variety_list);
-    res.status(200).send(data.variety_list)
+    // console.log(data.variety_listt);
+    res.status(200).send(data.variety_listt)
 
 })
 

@@ -20,17 +20,12 @@ router.get('/getallcropdata', async (req, res) => {
 
         // console.log();
 
-        console.log(buy_data);
-        const trail = await admin_varietywithcropid_list.findOne({crop_id: "62b6f6d82d96449b0162d498"})
+        // console.log(buy_data);
+
+
+        
         console.log(trail);
 
-        // .populate(
-        //     path: 'map_data._id',
-        //     model: 'location'
-        //     select:['nameLocation','geoPoints','count'],
-        //     ).exec();
-
-        // const getvariety = await sellcrop.find().populate("variety_id")
 
         res.send(buy_data)
     } catch (error) {
