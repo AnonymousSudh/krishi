@@ -80,9 +80,11 @@ function Navbar() {
                     <div className="buy_sell">
                         <NavLink exact to="/Buy_crops"> <button className='buy'>Buy</button>
                         </NavLink>
-                        <button className='sell' onClick={open_sell_dialog}>Sell</button>
+
+                        <NavLink exact to ="/Sell_crops"> <button className='sell'>Sell</button></NavLink> 
 
                     </div>
+                    
 
                     <div className="myprofile">
                         <NavLink exact to="/About"><div className="profile" style={css} ></div></NavLink>

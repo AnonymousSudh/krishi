@@ -46,8 +46,10 @@ function Sell_crops() {
 
     const {price, quantity } = sell_data;
     const crop_id = localStorage.getItem("crop_id");
-    console.log("hello");
-    console.log(crop_id);
+    // console.log("hello");
+    // console.log(price);
+    // console.log(quantity);
+    // console.log(crop_id);
     const variety_id = localStorage.getItem("variety_id");
     
 
@@ -69,7 +71,7 @@ function Sell_crops() {
       // HTMLFormElement.reset()
 
       // document.getElementsByClassName("sell_crop_div_at_home_jsx")[0].style.zIndex = "8";
-      document.getElementsByClassName("sell_crop_div_at_home_jsx")[0].style.display = "none";
+      // document.getElementsByClassName("sell_crop_div_at_home_jsx")[0].style.display = "none";
       alert('Data uploaded')
       // console.log(res.body);
     };
@@ -80,10 +82,6 @@ function Sell_crops() {
 
   }
 
-  const close_sell_form = () => {
-
-    document.getElementsByClassName("sell_crop_div_at_home_jsx")[0].style.display = "none";
-  }
 
   // const close_dialog_box = () => {
   //   document.getElementsByClassName("sell_crop_div_at_home_jsx")[0].style.display = "none";
@@ -176,18 +174,20 @@ function Sell_crops() {
         <div className="form_holder_div">
 
           <div className='form_holder'>
-            <button className='close_form_btn' onClick={close_sell_form}>cancel</button>
+            {/* <button className='close_form_btn' onClick={close_sell_form}>cancel</button> */}
             <form action="POST" name="contact_form">
               <div className='input_fields'>
                 <label htmlFor="crop name">Crop name :</label>
                 {/* <input type="text" id='crop_name' name='crop_name' value={sell_data.crop_name} 
               onChange={typevaluee} /> */}
                 <select name="cropdata" id="cropdata" onChange={selectvariety}>
+                <option disabled hidden selected>select the crop name</option>
+
 
                   {cropdata.map((val) => {
                     return (
                       <>
-                        <option disabled hidden selected>select the crop name</option>
+                        {/* <option disabled hidden selected>select the crop name</option> */}
                         <option value={val.crop_namee}>{val.crop_namee}</option>
                       </>
                     )
@@ -201,13 +201,15 @@ function Sell_crops() {
                 <label htmlFor="variety">Variety :</label>
                 {/* <input type="text" id='variety' name='variety' value={sell_data.variety} onChange={typevaluee} /> */}
                 <select name="varietydata" id="variety_data" onChange={getvarietyid}>
+                <option disabled hidden selected >select variety name</option>
+
 
                   {
 
                     variety_data.map((val) => {
                       return (
                         <>
-                          <option disabled hidden selected >select variety name</option>
+                          {/* <option disabled hidden selected >select variety name</option> */}
                           <option value={val.variety}>{val.variety}</option>
 
                         </>

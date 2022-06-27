@@ -22,6 +22,7 @@ function Logout() {
                 // alert("hello")
                 localStorage.removeItem("variety_id")
                 localStorage.removeItem("crop_id")
+                localStorage.removeItem("profie_pic_url")
                 history.push('/')
     
             }
