@@ -37,7 +37,7 @@
   align-items: center;
 
   background-color: rgb(190, 243, 190);
-  width: 65vw;
+  width: 35vw;
   /* height: 60vh; */
   border-radius: 30px 2px 2px 30px;
 
@@ -51,7 +51,7 @@
   /* padding-bottom: 40px */
 }
 
-h1 {
+.cright h1 {
   color: #16a085;
   font-weight: 300;
   font-size: 28px;
@@ -132,42 +132,41 @@ h1 {
 
 .cright {
   display: flex;
-  width: 45%;
+  width: 40%;
+  flex-direction: column;
   justify-content: center;
-  /* align-items: center; */
-  box-sizing: border-box;
+  align-items: center;
+  /* box-sizing: border-box; */
   background: rgb(26, 96, 26);
 
-  background-size: cover;
-  background-position: center;
   border-radius: 0 30px 30px 0;
+}
+.crightinfo{
+  height: 30vh;
+  border: 2px solid red;
+  display: flex;
+  flex-direction: column;
+
+
+
 }
 
 .cright-box {
-  display: block;
-  margin-bottom: 100px;
-  margin-top: 100px;
+
   font-size: 3rem;
   color: #16a085;
-  text-align: center;
-}
-
-.cright .cright-box2 {
-  display: block;
-  margin-bottom: 100px;
-  margin-top: 100px;
-  font-size: 15px;
-  color: #6da8f2;
-  text-align: center;
 
 }
+
+
 
 .hear {
+  /* border: 1px solid rgb(251, 224, 17); */
   font-size: 3rem;
 }
 
 .cphone {
-  margin-right: 55px;
+
   color: #DDD;
 
 }
@@ -177,12 +176,13 @@ h1 {
 }
 
 
-.cright-box1 {
-  display: block;
-  font-size:  rem;
-  margin-top: 20%;
-  margin-right: 2%;
-  text-align: center;
+.cright_box1 {
+
+  border: 1px solid red;
+
+
+  margin-top: 100%;
+
 }
 
 /* @media screen and(min-width:577px) and (max-width:768px){
