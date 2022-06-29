@@ -6,16 +6,24 @@ const mongoose = require("mongoose");
 
 
 // const conn = require("../db/connection")
- 
+
 const upload_variety = new mongoose.Schema({
 
-    crop_id: { type: mongoose.Schema.Types.ObjectId, ref:"crop_list"  },
-    variety_listt: [
-        {
-            variety: String
-            
-        }
-    ],
+    category_ids:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:"category_list"
+    },
+    crop_id: { 
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "crop_list"
+    },
+   
+    variety_list:[
+    {
+        variety_Name: String
+
+    }
+]
 
 })
 

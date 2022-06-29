@@ -12,6 +12,9 @@ const userList = require("../model/userschema");
 const emaillogindata = require("../model/emailloginschema");
 const sellcrop = require('../model/sell_crop_schema')
 const authenticate = require("../middleware/authenticate");
+// const admin_crop_list = require("../model/admin_crop_listingschema")
+// const admin_varietywithcropid_list = require("../model/admin_crop_varietyschema")
+const allSelledCrop = require("../model/sell_crop_schema")
 // require('../crop/buycrop')
 // require('./buyauth');
 
@@ -71,8 +74,8 @@ router.post("/signup", async (req, res) => {
     }
 
     if (pre_email) {
-        if (pre_email.email == "mauryasudhanshu930@gmail.com") {
-            res.status(204).send();
+        if (pre_email.email === "mauryasudhanshu930@gmail.com") {
+            res.status(205).send();
         }
 
         const update = await userList.updateOne({ _id: pre_email._id }, {
@@ -285,7 +288,24 @@ router.get('/logout' ,(req,res)=>{
 
 })
 
-router.get('/home',authenticate,(req,ress)=>{
+
+
+router.get('/getUserCrop', async(req,res)=>{
+    const userid = req.cookies.userid;
+    console.log(userid);
+    // console.log("hello");
+    const data = await allSelledCrop.find({seller_id:userid}).populate("seller_id","address").populate("crop_name_id","crop_name")
+    console.log(data);
+    // data.polpuate("crop_name_id")
+    res.status(200).send(data);
+
+
+
+})
+
+router.get('/home',authenticate,(req,res)=>{
+
+    
 
 })
 module.exports = router;

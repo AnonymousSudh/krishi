@@ -2,8 +2,8 @@
 const mongoose= require("mongoose");
 // const dotenv = require("dotenv");
 
-const db = process.env.DATABASE;
-// const db = process.env.LOCALDATABSE;
+// const db = process.env.DATABASE;
+const db = process.env.LOCALDATABSE;
 
 // const db_admin = process.env.ADMINDATABASE;
 

@@ -3,25 +3,31 @@ const admin_crop_list = require("../model/admin_crop_listingschema")
 const admin_varietywithcropid_list = require("../model/admin_crop_varietyschema")
 
 const sell_crop_schema = new mongoose.Schema({
+    category_id:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:"category_list"
+    },
     crop_name_id: {
-           type: mongoose.Schema.Types.ObjectId,
-            ref: 'crop_list'
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'crop_list'
     },
     variety_id:
-        {
-            type: mongoose.Schema.Types.ObjectId,
-            ref:"variety_list"
+    {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "variety_list"
 
-        } 
+    },
+    seller_id:
+    {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'user_table'
+    }
     ,
     price: Number,
     quantity: Number,
-    seller_id: 
-        {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'user_table'
-        }
-    
+    unit:String
+
+
 
 })
 

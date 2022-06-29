@@ -2,10 +2,20 @@ const mongoose = require("mongoose");
 
 
 const uploadcrop = new mongoose.Schema({
-    crop_namee : {
-        type:String,
-        require:true
-    }
+
+    category_id: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "category_list"
+
+    },
+    crop_Namee: [
+        {
+            name: String
+        }
+        // require:true
+
+    ]
+
 })
 
 

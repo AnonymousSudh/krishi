@@ -18,7 +18,8 @@ const Login = () => {
     const responseGoogle = async (response) => {
         // console.log("this is response");
         // console.log(response.profileObj.imageUrl);
-        localStorage.setItem("profie_pic_url",response.profileObj.imageUrl)
+        localStorage.setItem("profie_pic_url", response.profileObj.imageUrl)
+
         const res = await fetch("/signup", {
             method: "POST",
             headers: {
@@ -31,12 +32,12 @@ const Login = () => {
         });
 
 
-        // console.log(res);
+        console.log(`this is a response when google login happen ${res.status}`);
         if (res.status == 203) {
 
             history.push("/Enter_details");
         }
-        if (res.status == 204) {
+        if (res.status == 205) {
 
             history.push("/adminpanel");
         }
@@ -71,8 +72,8 @@ const Login = () => {
 
 
             });
-             const userid = res.json()
-             console.log(userid);
+            const userid = res.json()
+            console.log(userid);
 
             if (res.status == 200) {
                 // i think the below /home directory is that one which is present in login -> Home
@@ -115,14 +116,17 @@ const Login = () => {
 
 
 
-                        <input type="password" name="password" placeholder="Password" vlaue={login_password} onChange={(e) => setpassword(e.target.value)} />
+                        <input type="password" name="password" placeholder="Password" vlaue={login_password} onChange={(e) => {
+                            setpassword(e.target.value)
+                            console.log(login_password);
+                        }} />
 
                         <button className='log_submit' onClick={login_user}>login</button>
 
                         <p className='Or_log'>--------or--------</p>
                         <GoogleLogin className='google'
                             // clientId= {process.env.GOOGLE_CLIENT_ID}
-                            clientId= "897223443783-1bqmg4ifk0id3mvenq5vccpp3b0mhmm1.apps.googleusercontent.com"
+                            clientId="897223443783-1bqmg4ifk0id3mvenq5vccpp3b0mhmm1.apps.googleusercontent.com"
                             buttonText="Login"
                             onSuccess={responseGoogle}
                             onFailure={responseGoogle}
@@ -135,7 +139,7 @@ const Login = () => {
                         <div className='newacc' style={{ color: '#228B22' }}>
                             <br />Are You New to <span style={{ color: '#32CD32' }}><br />Krishi?</span>
                             <br /><button className='newaccbt' onClick={open_signup}>Create Account</button>
-                         
+
                         </div>
 
                     </div>

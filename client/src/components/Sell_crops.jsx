@@ -11,9 +11,15 @@ function Sell_crops() {
   });
 
   const [cropdata, setcropdata] = useState([]);
-  const [cropid, setcropid] = useState([]);
+  const [categoryList, setcategoryList] = useState([]);
   const [variety_data, setvariety_data] = useState([]);
+
+  const [categoryid,setcategoryid] = useState([]);
+  const [cropid, setcropid] = useState([]);
   const [varietyid, setvarietyid] = useState([]);
+
+  const [unit, setUnit] = useState([]);
+
 
   let nameee, valueee;
   const typevaluee = (event) => {
@@ -32,26 +38,187 @@ function Sell_crops() {
 
 
 
+  // // const close_dialog_box = () => {
+  // //   document.getElementsByClassName("sell_crop_div_at_home_jsx")[0].style.display = "none";
+  // // }
+
+  // const fetchcropid = async () => {
+  //   // console.log("hello dfdf");
+  //   const res = await fetch('/fetch_crop_id', {
+  //     method: "GET",
+  //     headers: {
+  //       Accept: "application/json",
+  //       "Content-type": "application/json"
+  //     },
+  //     Credentials: "include"
+  //   });
+  //   var data = await res.json();
+  //   // console.log(data[0]._id);
+  //   // data.map((val)=>{
+  //   //   console.log(val.crop_namee);
+  //   // })
+
+  //   setcropdata(data) // this data have cropid and crop name
+  //   // console.log(cropdata);
+  //   //  data.map((val)=>{
+  //   //     console.log(val.crop_namee);
+  //   //   });
+
+  // }
+
+
+  // // const selectvariety = async () => {
+  // //   const cropname = document.getElementById('cropdata').value
+  // //   const result = cropdata.find(({ crop_namee }) => crop_namee === cropname);
+
+  // //   // console.log(result._id);
+  // //   const cropid = result._id;
+  // //   localStorage.setItem("crop_id", result._id)
+
+
+  // //   const res = await fetch("/sendcropname", {
+  // //     method: "POST",
+  // //     headers: {
+  // //       "Content-Type": "application/json"
+
+  // //     },
+  // //     body: JSON.stringify({
+  // //       cropname, cropid
+  // //     })
+  // //   });
+
+  // //   const varietydata = await res.json();
+  // //   // console.log("this is variety data");
+  // //   console.log(varietydata);
+  // //   setvariety_data(varietydata)
+
+
+
+  // //   const varietyname = await fetch('/getvarietyname', {
+  // //     method: "GET",
+  // //     headers: {
+  // //       Accept: "application/json",
+  // //       "Content-type": "application/json"
+  // //     },
+  // //     Credentials: "include"
+
+  // //   })
+  // // }
 
 
 
 
 
 
+
+  // // new coding start here 
+  const selectcategory = async () => {
+
+    const res = await fetch('/getcategory', {
+      method: "GET",
+      headers: {
+        Accept: "application/json",
+        "Content-type": "application/json"
+      },
+      Credentials: "include"
+    });
+    const categoryList = await res.json();
+    // console.log(categoryList);
+    setcategoryList(categoryList)
+    // console.log(categoryList);
+  }
+
+
+  const selectcrop = async () => {
+    const categoryname = document.getElementById('categorydata').value
+    console.log(categoryname);
+    console.log(`this is crop which select user:- ${categoryname} `);
+    const result = categoryList.find(({ category_Name }) => category_Name === categoryname);
+
+    // console.log(result);
+    const categoryid = result._id;
+    setcategoryid(categoryid)
+    localStorage.setItem("category_id", result._id)
+
+
+    const res = await fetch("/getcrop", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+
+      },
+      body: JSON.stringify({
+        categoryname, categoryid
+      })
+    });
+
+    const cropdata = await res.json();
+
+    // console.log("this is variety data");
+    console.log(cropdata);
+    setcropdata(cropdata)
+
+  }
+
+  const selectvariety = async () => {
+
+    const crop = document.getElementById("cropdata").value
+    console.log(crop);
+    const result = cropdata.find(({ name }) => name == crop)
+    console.log(result._id);
+    const crop_id = result._id;
+
+    setcropid(crop_id)
+    localStorage.setItem("crop_id", result._id);
+
+    const varietyname = await fetch('/getvariety', {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+
+      },
+      body: JSON.stringify({
+        crop_id
+    })
+    });
+
+    const data = await varietyname.json();
+    console.log(data);
+    setvariety_data(data)
+
+    // console.log(varietyname.json());
+  }
+
+  const getvarietyid = () => {
+      const varietyname = document.getElementById('variety_data').value
+      console.log(variety_data);
+      console.log(varietyname);
+  
+      const dd = variety_data.find(({ variety_Name }) => variety_Name === varietyname)
+      console.log(dd._id);
+      localStorage.setItem("variety_id", dd._id)
+  
+    }
+
+    const setunit=()=>{
+      const data = document.getElementById("unit").value
+      console.log(data);
+      setUnit(data)
+    }
 
   const submit_sell_details = async (event) => {
     event.preventDefault();
 
+    const { price, quantity } = sell_data;
 
-
-    const {price, quantity } = sell_data;
+    const category_id = localStorage.getItem("category_id");
     const crop_id = localStorage.getItem("crop_id");
+    const variety_id = localStorage.getItem("variety_id");
     // console.log("hello");
     // console.log(price);
     // console.log(quantity);
     // console.log(crop_id);
-    const variety_id = localStorage.getItem("variety_id");
-    
+
 
     const res = await fetch("/Sell_crops", {
       method: "POST",
@@ -60,18 +227,12 @@ function Sell_crops() {
 
       },
       body: JSON.stringify({
-        crop_id,variety_id, price, quantity
+        category_id,crop_id, variety_id, price, quantity,unit
       })
     });
     // console.log(res.status);
 
     if (res.status === 200) {
-      // close_dialog_box();
-      // document.getElementsByClassName("contact_form")[0].reset();
-      // HTMLFormElement.reset()
-
-      // document.getElementsByClassName("sell_crop_div_at_home_jsx")[0].style.zIndex = "8";
-      // document.getElementsByClassName("sell_crop_div_at_home_jsx")[0].style.display = "none";
       alert('Data uploaded')
       // console.log(res.body);
     };
@@ -82,90 +243,9 @@ function Sell_crops() {
 
   }
 
-
-  // const close_dialog_box = () => {
-  //   document.getElementsByClassName("sell_crop_div_at_home_jsx")[0].style.display = "none";
-  // }
-
-  const fetchcropid = async () => {
-    // console.log("hello dfdf");
-    const res = await fetch('/fetch_crop_id', {
-      method: "GET",
-      headers: {
-        Accept: "application/json",
-        "Content-type": "application/json"
-      },
-      Credentials: "include"
-    });
-    var data = await res.json();
-    // console.log(data[0]._id);
-    // data.map((val)=>{
-    //   console.log(val.crop_namee);
-    // })
-
-    setcropdata(data) // this data have cropid and crop name
-    // console.log(cropdata);
-    //  data.map((val)=>{
-    //     console.log(val.crop_namee);
-    //   });
-
-  }
-  
-
-  const selectvariety = async () => {
-    const cropname = document.getElementById('cropdata').value
-    const result = cropdata.find( ({ crop_namee }) => crop_namee === cropname );
-
-    // console.log(result._id);
-    const cropid = result._id;
-    localStorage.setItem("crop_id", result._id)
-
-
-    const res = await fetch("/sendcropname", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-
-      },
-      body: JSON.stringify({
-        cropname,cropid
-      })
-    });
-
-    const varietydata = await res.json();
-    // console.log("this is variety data");
-    console.log(varietydata);
-    setvariety_data(varietydata)
-
-
-
-    const varietyname = await fetch('/getvarietyname', {
-      method: "GET",
-      headers: {
-        Accept: "application/json",
-        "Content-type": "application/json"
-      }, 
-      Credentials: "include"
-
-    })
-  }
-
-
-
-
-  const getvarietyid =()=>{
-    const varietyname = document.getElementById('variety_data').value
-    // console.log(variety_data);
-    console.log(varietyname);
-
-    const dd=  variety_data.find(({variety}) =>variety === varietyname )
-    console.log(dd._id);
-    localStorage.setItem("variety_id",dd._id)
-    
-  }
-
   useEffect(() => {
-    fetchcropid();
+    // fetchcropid();
+    selectcategory();
   }, [])
 
   return (
@@ -176,19 +256,38 @@ function Sell_crops() {
           <div className='form_holder'>
             {/* <button className='close_form_btn' onClick={close_sell_form}>cancel</button> */}
             <form action="POST" name="contact_form">
+
+              <div className='input_fields'>
+                <label htmlFor="crop name">Category  :</label>
+                {/* <input type="text" id='crop_name' name='crop_name' value={sell_data.crop_name} 
+               onChange={typevaluee} /> */}
+                <select name="categorydata" id="categorydata" onChange={selectcrop}>
+                  <option disabled hidden selected>select the crop name</option>
+                  {categoryList.map((val) => {
+                    // console.log(val);
+                    return (
+                      <>
+                        {/* <option disabled hidden selected>select the crop name</option> */}
+                        <option value={val.category_Name}>{val.category_Name}</option>
+                      </>
+                    )
+                  })}
+
+                </select>
+
+              </div>
+
               <div className='input_fields'>
                 <label htmlFor="crop name">Crop name :</label>
-                {/* <input type="text" id='crop_name' name='crop_name' value={sell_data.crop_name} 
-              onChange={typevaluee} /> */}
                 <select name="cropdata" id="cropdata" onChange={selectvariety}>
-                <option disabled hidden selected>select the crop name</option>
+                  <option disabled hidden selected>select the crop name</option>
 
 
                   {cropdata.map((val) => {
                     return (
                       <>
                         {/* <option disabled hidden selected>select the crop name</option> */}
-                        <option value={val.crop_namee}>{val.crop_namee}</option>
+                        <option value={val.name}>{val.name}</option>
                       </>
                     )
                   })}
@@ -201,16 +300,13 @@ function Sell_crops() {
                 <label htmlFor="variety">Variety :</label>
                 {/* <input type="text" id='variety' name='variety' value={sell_data.variety} onChange={typevaluee} /> */}
                 <select name="varietydata" id="variety_data" onChange={getvarietyid}>
-                <option disabled hidden selected >select variety name</option>
-
-
+                  <option disabled hidden selected >select variety name</option>
                   {
-
                     variety_data.map((val) => {
                       return (
                         <>
                           {/* <option disabled hidden selected >select variety name</option> */}
-                          <option value={val.variety}>{val.variety}</option>
+                          <option value={val.variety_Name}>{val.variety_Name}</option>
 
                         </>
                       )
@@ -231,7 +327,7 @@ function Sell_crops() {
                 <label htmlFor="quantity">quantity :</label>
                 <input type="text" id='quantity' name='quantity' value={sell_data.quantity} onChange={typevaluee} />
 
-                <select id="unit">
+                <select id="unit" onChange={setunit}>
                   <option disabled selected hidden>select unit</option>
                   <option value="kg">kg</option>
                   <option value="ton">Ton</option>

@@ -11,6 +11,7 @@ import Buy_crops from "./components/Buy_crops";
 import signup from "./login/Signup"
 import logout from "./components/Logout"
 import Loading from "./components/Loading"
+import YourCrop from "./components/YourCrop"
 
 import './style/login.css'
 // import './style/navbar.css'
@@ -38,6 +39,7 @@ function App() {
         <Route exact path={"/enterotp"} component={enterotp}/>
         <Route exact path="/logout" component={logout}/>
         <Route exact path="/loading" component={Loading}/>
+        <Route exact path="/YourCrops" component={YourCrop}/>
 
       </Switch>
     

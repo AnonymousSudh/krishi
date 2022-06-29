@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Navbar from './Navbar';
 import "../style/about.css";
-import { useHistory,NavLink } from 'react-router-dom';
+import { useHistory, NavLink } from 'react-router-dom';
 
 
 
@@ -11,7 +11,7 @@ const About = () => {
     // console.log(req);
 
     const history = useHistory();
-    
+
     const [userData, setUserData] = useState({});
 
     const callAboutPage = async () => {
@@ -115,13 +115,18 @@ const About = () => {
                                 </div>
                             </div>
 
-                            
-                    <div className="logout">
-                        <NavLink exact to="./logout"><button className="logout">logout</button></NavLink>
-                    </div>
+
+                            <div className="logout">
+                                <NavLink exact to="./logout"><button className="logout">logout</button></NavLink>
+                            </div>
                         </div>
 
                     </div>
+
+                        <div className="cropDataList">
+                            <NavLink exact to='./YourCrops'><button >Your crop</button></NavLink>
+
+                        </div>
                 </div>
             </div>
 
