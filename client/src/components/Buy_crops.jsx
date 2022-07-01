@@ -10,7 +10,7 @@ const Buy_crops = () => {
 
   const getallselldata = async () => {
 
-    const res = await fetch('/getallcropdata', {
+    const res = await fetch('/getAllBuyingData', {
       method: "GET",
       headers: {
         Accept: "application/json",
@@ -42,7 +42,7 @@ const Buy_crops = () => {
 
             {data.map((val) => {
               return (
-                <>
+                <> 
                   <Card
                    cropname={val.crop_name_id.crop_namee} 
                    varietyname={val.variety_id}

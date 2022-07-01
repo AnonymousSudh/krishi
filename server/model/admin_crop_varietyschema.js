@@ -7,7 +7,7 @@ const mongoose = require("mongoose");
 
 // const conn = require("../db/connection")
 
-const upload_variety = new mongoose.Schema({
+const upload_variety = new mongoose.Schema({ 
 
     category_ids:{
         type:mongoose.Schema.Types.ObjectId,

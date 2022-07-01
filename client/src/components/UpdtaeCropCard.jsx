@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+// var nestedPop = require('nested-pop');
 import "../style/card.css"
 import "../style/updatecropcard.css"
 
@@ -19,7 +20,7 @@ function Card(props) {
 
     const UpdateDate = () => {
 
-    }
+    } 
 
     return (
         <>
