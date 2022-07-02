@@ -5,6 +5,8 @@ const sell_crop_schema = require("../model/sell_crop_schema")
 const admin_category_schema = require("../model/admin_category_listSchema")
 const admin_crop_list = require("../model/admin_crop_listingschema")
 const admin_varietywithcropid_list = require("../model/admin_crop_varietyschema")
+const allcrop = require("../model/allcrop")
+const allvariety = require("../model/allvariety")
 
 // router.get("/Sell_crops",(req,res)=> {
 //     res.send("hello from the express side")
@@ -31,14 +33,32 @@ router.post('/getcrop', async (req, res) => {
     res.status(200).send(data.crop_Namee)
 
 })
+
 router.post("/getvariety", async (req, res) => {
-    const { crop_id } = req.body;
+    const { crop_id,crop } = req.body;
     // console.log("inside getvariety server");
     console.log(crop_id);
     const data = await admin_varietywithcropid_list.findOne({ crop_id: crop_id });
-    console.log(data.variety_list);
-    res.send(data.variety_list)
+    const data2 = await allcrop.findOne({ crop: crop });
+    console.log(data2._id);
+    const uniqueCropId =  data2._id;
+    const array = [uniqueCropId,data.variety_list]
+
+    // console.log(data.variety_list);
+    // res.send(data.variety_list)
+    res.send(array)
 })
+
+router.post("/getnewvarietyid", async (req, res) => {
+    const {varietyname} = req.body;
+    const data2 = await allcrop.findOne({ variety: varietyname });
+    console.log(data2._id);
+    res.send(data2._id)
+
+
+})
+
+
 
 router.post("/Sell_crops", async (req, res) => {
     try {

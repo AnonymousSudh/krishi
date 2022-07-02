@@ -9,12 +9,12 @@ const sell_crop_schema = new mongoose.Schema({
     }, 
     crop_name_id: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'crop_list'
+        ref: 'all_Crop'
     },
     variety_id:
     {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "variety_list"
+        ref: "all_Variety"
         // autopopulate: true
 
     },

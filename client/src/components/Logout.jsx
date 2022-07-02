@@ -17,7 +17,8 @@ function Logout() {
                 },
                 credentials:"include"
               });
-        // console.log(res.status);
+        console.log(res.status);
+
               if(res.status ===200){
                 // alert("hello")
                 localStorage.removeItem("variety_id")

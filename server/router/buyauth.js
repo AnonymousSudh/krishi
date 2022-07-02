@@ -17,13 +17,11 @@ router.get('/getAllBuyingData', async (req, res) => {
     try {
         // .populate("crop_name_id").populate("seller_id")
         // .populate("seller_id", "name email address phoneno ").populate("variety_id")
-        const buy_data = await sellcrop.find({}).populate({
-            path: 'variety_id',
-            populate: { path: 'variety_list' }
-        });
+        const buy_data = await sellcrop.find()
+        console.log(buy_data);
 
-        const trial = await admin_varietywithcropid_list.findById("62bdbb7b7f47bcdad835f54f").populate("crop_id")
-        console.log(trial);
+        // const trial = await admin_varietywithcropid_list.findById("62bdbb7b7f47bcdad835f54f").populate("crop_id")
+        // console.log(trial);
 
     
 

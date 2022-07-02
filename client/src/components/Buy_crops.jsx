@@ -51,10 +51,7 @@ const Buy_crops = () => {
                    sellername={val.seller_id.name}
                    sellerphoneno={val.seller_id.phoneno}
                    selleremail={val.seller_id.email}
-                   
-
-                   
-                   
+                  
                    
                    />
                   {/* <div className='buy_card'> */}

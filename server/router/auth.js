@@ -68,12 +68,16 @@ router.post("/signup", async (req, res) => {
             httpOnly: true
 
         })
+        if (user_google_data.email === "mauryasudhanshu930@gmail.com") {
+            res.status(205).send();
+        }
 
         return res.status(203).send();
 
     }
 
     if (pre_email) {
+
         if (pre_email.email === "mauryasudhanshu930@gmail.com") {
             res.status(205).send();
         }

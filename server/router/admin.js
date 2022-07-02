@@ -3,6 +3,8 @@ const router = express.Router();
 const admin_crop_list = require("../model/admin_crop_listingschema")
 const admin_varietywithcropid_list = require("../model/admin_crop_varietyschema")
 const admin_category_list = require('../model/admin_category_listSchema')
+const allcrop = require("../model/allcrop");
+const allvariety = require("../model/allvariety");
 
 
 router.post('/uploadcrop', async (req, res) => {
@@ -30,9 +32,17 @@ router.post('/uploadcrop', async (req, res) => {
                 category_id: categoryId
             }).save();
             // console.log("hello");
-
-
             // console.log("this is save crop detials");
+
+            const savecrop2 = await allcrop({
+                crop:crop_Name
+            }).save();
+            console.log("this is crop2 data");
+            console.log(savecrop2);
+
+            const savevariety2 = await allvariety({
+                variety:variety_Name
+            }).save();
 
             console.log(savecrop.crop_Namee[0]._id); // yaha to humko 0th wala he chaiye. q ki first time save hoga
 
@@ -78,9 +88,17 @@ router.post('/uploadcrop', async (req, res) => {
                 addcrop.crop_Namee.push({ name: crop_Name })
                 await addcrop.save();
 
+                const savecrop2 = await allcrop({
+                    crop:crop_Name
+                }).save();
+    
+                // const savevariety2 = await allvariety({
+                //     variety:variety_Name
+                // })
+
                 console.log(addcrop);
             }
-            else { //crop hai 
+            else { // categoty hai and crop bhi hai
                 console.log("i am else part for variety");
                 // console.log(crop.crop_Namee);
                 // const data = crop.crop_Namee;
@@ -95,6 +113,22 @@ router.post('/uploadcrop', async (req, res) => {
                         category_ids: categoryId, crop_id: cropp._id, variety_list: [{ variety_Name: variety_Name }]
 
                     }).save();
+
+                    // const savecrop2 = await allcrop({
+                    //     crop:crop_Name
+                    // })
+        
+                    // const savevariety3 = await allvariety({
+                    //     variety:variety_Name
+                    // })
+
+                    // const savecrop2 = await allcrop({
+                    //     crop:crop_Name
+                    // })
+        
+                    const savevariety2 = await allvariety({
+                        variety:variety_Name
+                    }).save();
                 }
                 else {
                     const addvariety = await admin_varietywithcropid_list.findOne({
@@ -105,6 +139,14 @@ router.post('/uploadcrop', async (req, res) => {
                     if (!addvariety) {
                         varietylist.variety_list.push({ variety_Name: variety_Name })
                         await varietylist.save();
+
+                        // const savecrop2 = await allcrop({
+                        //     crop:crop_Name
+                        // })
+            
+                        const savevariety2 = await allvariety({
+                            variety:variety_Name
+                        }).save();
                     }
                     else{
                         res.status(401).send();
