@@ -51,7 +51,7 @@ router.post('/signup_email', async (req, res) => {
                 // const time=5;
 
                 const transporter = nodemailer.createTransport({
-                    service: "hotmail",
+                    service: "Yahoo",
                     auth: {
                         user: process.env.MAIL_ACC,
                         pass: process.env.MAIL_PASS,

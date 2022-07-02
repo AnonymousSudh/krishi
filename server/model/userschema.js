@@ -21,7 +21,7 @@ const loginSchema = new mongoose.Schema({
     google_token:{
         type:String
 
-    },
+    }, 
     // tokenn:{
     //     type:String,
     // },

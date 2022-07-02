@@ -3,10 +3,9 @@ import React, { useEffect, useState } from 'react'
 import '../style/buy_crop.css'
 import Card from '../components/Card'
 
-
 const Buy_crops = () => {
 
-  const [data, setdata] = useState([]);
+  const [result, setResult] = useState([]);
 
   const getallselldata = async () => {
 
@@ -20,9 +19,11 @@ const Buy_crops = () => {
       Credential: "include"
 
     })
-    const data = await res.json()
-    setdata(data);
-    console.log(data);
+    const allSellList = await res.json();
+    setResult(allSellList)
+    // console.log(resu);
+    // console.log(allSellList);
+
   }
 
   useEffect(() => {
@@ -37,15 +38,15 @@ const Buy_crops = () => {
       <div className='showDataa'>
         <div className="tabledata">
 
-      
 
+          {console.log(result)}
 
-            {data.map((val) => {
+            {result.map((val) => {
               return (
                 <> 
                   <Card
-                   cropname={val.crop_name_id.crop_namee} 
-                   varietyname={val.variety_id}
+                   cropname={val.crop_name_id.crop} 
+                   varietyname={val.variety}
                    quantity={val.quantity}
                    price={val.price}
                    sellername={val.seller_id.name}
@@ -54,18 +55,7 @@ const Buy_crops = () => {
                   
                    
                    />
-                  {/* <div className='buy_card'> */}
-
-                  {/* <tr>
-                        <td>{val.crop_name_id.crop_namee}</td>
-                        <td>{val.variety_id}</td>
-                        <td>{val.quantity}</td>
-                        <td>{val.price}</td>
-                        <td>{val.seller_id.name}</td>
-                        <td>{val.seller_id.phoneno}</td>
-                        <td>{val.seller_id.email}</td>
-                      </tr> */}
-                  {/* </div> */}
+          
                 </>
               )
 

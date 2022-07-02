@@ -51,8 +51,8 @@ router.post("/getvariety", async (req, res) => {
 
 router.post("/getnewvarietyid", async (req, res) => {
     const {varietyname} = req.body;
-    const data2 = await allcrop.findOne({ variety: varietyname });
-    console.log(data2._id);
+    const data2 = await allvariety.findOne({ variety: varietyname });
+    // console.log(data2._id);
     res.send(data2._id)
 
 
@@ -64,7 +64,8 @@ router.post("/Sell_crops", async (req, res) => {
     try {
         // console.log(req.body);
         const sellerid = req.cookies.userid;
-        // console.log(sellerid);
+        console.log("this is seller id");
+        console.log(sellerid);
         const { crop_id, variety_id, price, quantity, category_id,unit } = req.body
         // console.log(crop_id);
 

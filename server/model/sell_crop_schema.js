@@ -23,7 +23,7 @@ const sell_crop_schema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'user_table'
     }
-    ,
+    , 
     price: Number,
     quantity: Number,
     unit:String

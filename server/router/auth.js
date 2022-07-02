@@ -62,8 +62,15 @@ router.post("/signup", async (req, res) => {
         const user = await userList({
             name, email, imageuri, google_token
         }).save();
+        // localStorage.setItem()
 
         res.cookie("google_token", google_token, { // here we storing our token in cookies
+            expires: new Date(Date.now() + 25892000000),
+            httpOnly: true
+
+        })
+        
+        res.cookie("userid", user._id, { // here we storing our token in cookies
             expires: new Date(Date.now() + 25892000000),
             httpOnly: true
 
@@ -94,9 +101,14 @@ router.post("/signup", async (req, res) => {
         res.cookie("google_token", google_token, { // here we storing our token in cookies
             expires: new Date(Date.now() + 25892000000),
             httpOnly: true
-        })
+        });
+        console.log("at auth.js line no 105`");
+        console.log(pre_email);
+        res.cookie("userid", pre_email._id, { // here we storing our token in cookies
+            expires: new Date(Date.now() + 25892000000),
+            httpOnly: true
 
-      
+        })
         return res.status(201).send();
 
     }

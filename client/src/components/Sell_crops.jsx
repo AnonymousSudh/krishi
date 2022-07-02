@@ -110,10 +110,10 @@ function Sell_crops() {
     const data = await varietyname.json();
     localStorage.setItem("crop_id", data[0]);
 
-    console.log(data[1]);
+    // console.log(data[1]);
     setvariety_data(data[1])
-
-    // console.log(varietyname.json());
+    console.log("this is variety data ");
+    console.log(variety_data);
   }
 
   const getvarietyid = async () => {
@@ -235,7 +235,7 @@ function Sell_crops() {
                   {cropdata.map((val) => {
                     return (
                       <>
-                        {/* <option disabled hidden selected>select the crop name</option> */}
+                        <option disabled hidden selected>select the crop name</option>
                         <option value={val.name}>{val.name}</option>
                       </>
                     )
@@ -254,7 +254,7 @@ function Sell_crops() {
                     variety_data.map((val) => {
                       return (
                         <>
-                          {/* <option disabled hidden selected >select variety name</option> */}
+                          <option disabled hidden selected >select variety name</option>
                           <option value={val.variety_Name}>{val.variety_Name}</option>
 
                         </>
