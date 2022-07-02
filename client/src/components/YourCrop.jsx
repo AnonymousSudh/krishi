@@ -35,22 +35,20 @@ function YourCrop() {
     return (
         <>
             <h1>hello</h1>
-            
+            {/* {console.log(cropdata)} */}
             {cropdata.map((val ,index) => {
                 console.log(val.quantity);
                 return (
                 <>
-                {/* <div className="onedata">
-
-                    <div>{val.crop_name_id.crop_namee}</div>
-                    <div>{val.price}</div>
-                    <div>{val.quantity}</div>
-                    <div>{val.seller_id.address}</div>
-                </div> */}
+    
                 <Card2
-                    cropname ={val.crop_name_id.crop_namee}
+                    _id={val._id}
+                    category={val.category_id.category_Name}
+                    cropname ={val.crop_name_id.crop}
+                    variety={val.variety_id.variety}
                     quantity ={val.quantity}
                     price={val.price}
+                    unit={val.unit}
                     index={index}
                 
                 />

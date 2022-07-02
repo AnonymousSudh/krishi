@@ -1,6 +1,35 @@
-.index{
-    border:1px solid red;
-    width: 200px;
-    margin-left: 20px;
-    /* width:20vw; */
+.card_div{
+    /* border: 10px solid red; */
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+} 
+
+.ownsell_data_holder{
+    width: 100vw;
+    /* border: 1px solid green; */
+    margin-left:0px;
+    display: flex;
+    /* align-items: center; */
+    /* justify-content: space-between; */
+    /* align-items: center; */
+}
+.ingo_btn{
+
+    display: flex;
+    width: 20vw;
+    margin-top: 35px;
+    
+    /* justify-items: ; */
+    justify-content: space-between;
+    /* align-items: ; */
+    /* border: 1px solid red; */
+}
+#updatebtn{
+    width: 70px;
+    height: 40px;
+
 }

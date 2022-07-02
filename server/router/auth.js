@@ -11,10 +11,14 @@ const feedback_list = require("../model/adminschema");
 const userList = require("../model/userschema");
 const emaillogindata = require("../model/emailloginschema");
 const sellcrop = require('../model/sell_crop_schema')
+const allcrop = require("../model/allcrop")
+const allvariety = require("../model/allvariety")
+const allSelledCrop = require("../model/sell_crop_schema")
+const admin_categoty_schema = require("../model/admin_category_listSchema")
+
 const authenticate = require("../middleware/authenticate");
 // const admin_crop_list = require("../model/admin_crop_listingschema")
 // const admin_varietywithcropid_list = require("../model/admin_crop_varietyschema")
-const allSelledCrop = require("../model/sell_crop_schema")
 // require('../crop/buycrop')
 // require('./buyauth');
 
@@ -79,7 +83,7 @@ router.post("/signup", async (req, res) => {
             res.status(205).send();
         }
 
-        return res.status(203).send();
+        res.status(203).send();
 
     }
 
@@ -109,7 +113,7 @@ router.post("/signup", async (req, res) => {
             httpOnly: true
 
         })
-        return res.status(201).send();
+        res.status(201).send(pre_email._id);
 
     }
 
@@ -310,8 +314,14 @@ router.get('/getUserCrop', async(req,res)=>{
     const userid = req.cookies.userid;
     console.log(userid);
     // console.log("hello");
-    const data = await allSelledCrop.find({seller_id:userid}).populate("seller_id","address").populate("crop_name_id","crop_name")
+    const data = await allSelledCrop.find({seller_id:userid})
+    .populate("category_id","category_Name")
+    .populate("seller_id","address")
+    .populate("crop_name_id","crop")
+    .populate("variety_id","variety")
+
     console.log(data);
+    // localStorage.getItem("userid")
     // data.polpuate("crop_name_id")
     res.status(200).send(data);
 
@@ -324,4 +334,44 @@ router.get('/home',authenticate,(req,res)=>{
     
 
 })
+
+
+
+
+
+
+router.post("/updateOwnCrop", async(req,res)=>{ //at updateCardCrop 
+    try {
+        
+   
+    // const {quantity,price,id,unit}= req.body;
+    // console.log(`this is user id at updateowncrop ${id}`)
+
+
+
+    const updatedata = await allSelledCrop.updateOne({ _id:id},{
+        $set:{
+            price:price,
+            quantity:quantity,
+            unit:unit
+        }
+    })
+    // console.log(updatedata);
+
+
+} catch (error) {
+    console.log(error);
+        
+}
+
+
+})
+
+
+
+
+
+
+
+
 module.exports = router;

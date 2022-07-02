@@ -1,7 +1,7 @@
 import React from 'react'
 import "../style/card.css"
 
-function Card(props) {
+function Card(props) { 
     return (
         <>
             <div className="card_div">
@@ -14,8 +14,9 @@ function Card(props) {
 
                         <h1>{props.cropname}</h1>
                         <h1>{props.varietyname}</h1>
+                        <h1>{props.price} rupee</h1>
                         <h1>{props.quantity}</h1> 
-                        <h1>{props.price}</h1>
+                        <h1>{props.unit}</h1>
                     </div>
 
                     <div className="seller_detail_holder">

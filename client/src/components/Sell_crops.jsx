@@ -90,13 +90,14 @@ function Sell_crops() {
     const crop = document.getElementById("cropdata").value
     console.log(crop);
     const result = cropdata.find(({ name }) => name == crop)
+    console.log("this is cropid of selected crop");
     console.log(result._id);
     const crop_id = result._id;
 
     setcropid(crop_id)
-    // localStorage.setItem("crop_id", result._id);
+    localStorage.setItem("admin_crop_id", result._id);
 
-    const varietyname = await fetch('/getvariety', {
+    const varietyname = await fetch('/getvariety', { // at sellauth
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -112,8 +113,11 @@ function Sell_crops() {
 
     // console.log(data[1]);
     setvariety_data(data[1])
-    console.log("this is variety data ");
-    console.log(variety_data);
+    console.log("this is data at sellcrop for variety");
+    console.log(data);
+
+    // console.log("this is variety data ");
+    // console.log(variety_data);
   }
 
   const getvarietyid = async () => {
@@ -122,8 +126,9 @@ function Sell_crops() {
       console.log(varietyname);
   
       const dd = variety_data.find(({ variety_Name }) => variety_Name === varietyname)
-      console.log(dd._id);
-      // localStorage.setItem("variety_id", dd._id)
+      // console.log("this is variety id of selcetion");
+      // console.log(dd._id);
+      localStorage.setItem("admin_variety_id", dd._id)
   
       const setNewVarietyId = await fetch('/getnewvarietyid', {
         method: "POST",

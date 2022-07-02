@@ -31,6 +31,10 @@ const Login = () => {
             })
         });
 
+        const data = await res.json();
+        console.log("this is userid at login.jsx line 35" );
+        console.log(data);
+        localStorage.setItem("userid", data)
 
         console.log(`this is a response when google login happen ${res.status}`);
         if (res.status == 203) {

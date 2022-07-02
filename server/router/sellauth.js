@@ -34,7 +34,7 @@ router.post('/getcrop', async (req, res) => {
 
 })
 
-router.post("/getvariety", async (req, res) => {
+router.post("/getvariety", async (req, res) => { 
     const { crop_id,crop } = req.body;
     // console.log("inside getvariety server");
     console.log(crop_id);
