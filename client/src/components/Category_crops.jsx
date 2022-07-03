@@ -1,11 +1,13 @@
 import '../style/category_crops.css'
 import Navbar from './Navbar';
 import CategoryCard from './CategoryCard';
+import VarietyCard from './card/VarietyCard';
 import { useEffect, useState } from 'react';
 
 const Category_crops = () => {
 
     const [category, setCategory] = useState([]);
+    const [variety, setVariety] = useState([]);
 
 
     const fetchCategory = async () => {
@@ -20,26 +22,47 @@ const Category_crops = () => {
             Credential: "include"
 
         })
-        console.log("1");
+
         console.log(getcategory);
         const result = await getcategory.json()
-        console.log("2");
+
         console.log(result);
 
-        console.log("3");
 
         // setCategory(result=>{
         //     return [...result]
 
         // })
         setCategory(result)
-        console.log("4");
+
         console.log(category);
-        console.log("5");
+
 
     }
     const log = () => {
         console.log(category);
+    }
+
+    const showcrop = async () => {
+
+        // alert("hello")
+        const category_id = localStorage.getItem("buy_variety_id")
+
+        const getCrop = await fetch("/getCropForBuy", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+
+            },
+            body: JSON.stringify({
+                category_id
+            })
+        });
+
+        const data = await getCrop.json()
+        console.log(data);
+        setVariety(data)
+
     }
 
     useEffect(() => {
@@ -60,18 +83,41 @@ const Category_crops = () => {
                         {category.map((val) => {
                             return (
                                 <>
-                                    {/* <h1>hello</h1> */}
-                                    <CategoryCard
 
-                                        categoryname={val}
+                                    <button className='categoryBtn' onClick={showcrop}>
 
-                                    />
+                                        <CategoryCard
+
+                                            categoryname={val.category_Name}
+                                            _id={val._id}
+
+                                        />
+                                    </button>
                                 </>
                             )
                         })}
                     </div>
                     <div className='line'></div>
+
+                    <div className="cropholder">
+                        {variety.map((val) => {
+                            return (
+                                <>
+                                    <VarietyCard
+                                        varietyName={val.name}
+                                    />
+
+                                </>
+                            )
+                        })}
+
+
+
+                    </div>
                     <p className='talk'>Can't find a product you are looking for?</p>
+
+
+
                     <button className='button_talk'>Talk to us</button>
                 </div>
 

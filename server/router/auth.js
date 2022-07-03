@@ -10,11 +10,12 @@ require('../db/connection');
 const feedback_list = require("../model/adminschema");
 const userList = require("../model/userschema");
 const emaillogindata = require("../model/emailloginschema");
-const sellcrop = require('../model/sell_crop_schema')
+// const sellcrop = require('../model/sell_crop_schema')
 const allcrop = require("../model/allcrop")
 const allvariety = require("../model/allvariety")
 const allSelledCrop = require("../model/sell_crop_schema")
 const admin_categoty_schema = require("../model/admin_category_listSchema")
+const admin_crop_list = require("../model/admin_crop_listingschema")
 
 const authenticate = require("../middleware/authenticate");
 router.use(cookieParser())
@@ -409,10 +410,23 @@ router.post("/updateOwnCrop", async (req, res) => { //at updateCardCrop
 
 
 router.get("/getcategory",async(req,res)=>{
-    const data = await admin_categoty_schema.distinct("category_Name");
-    console.log(data);
+    const data = await admin_categoty_schema.find();
+    console.log(data[0].category_Name);
 
     res.send(data);
+})
+
+
+router.post("/getCropForBuy", async(req,res)=>{
+
+    const {category_id} = req.body
+    // console.log(category_id);
+
+    const data = await admin_crop_list.findOne({category_id:category_id})
+    // console.log(data);
+
+    res.send(data.crop_Namee)
+
 })
 
 

@@ -52,6 +52,28 @@
 .category_holder{
   /* border: 10px solid red; */
   display: flex;
-  max-width: 70vw;
+  width: 70vw;
   flex-direction: row;
+  justify-content: space-between;
+}
+
+.categoryBtn{
+  background-color: #4CAF50; 
+  border-radius: 25px;
+  font-size: 1rem;
+  color: white;
+  border:none; 
+  border-radius:10px; 
+
+  /* padding:15px; */
+  height:60px; 
+  width: 180px;
+}
+
+.cropholder{
+  /* border: 1px solid red; */
+  display: flex;
+  flex-direction: row;
+  width: 50vw;
+  justify-content: space-around;
 }
