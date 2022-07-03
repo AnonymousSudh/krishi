@@ -129,7 +129,7 @@ router.post('/uploadcrop', async (req, res) => {
                     const savevariety2 = await allvariety({
                         variety:variety_Name
                     }).save();
-                }
+                } 
                 else {
                     const addvariety = await admin_varietywithcropid_list.findOne({
                         variety_list: {

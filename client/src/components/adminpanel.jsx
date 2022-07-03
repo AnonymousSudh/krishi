@@ -15,7 +15,7 @@ function Adminpanel() {
     event.preventDefault();
     // console.log(crop_namee);
     // console.log(variety_name);
-
+ 
     const uploadcrop = await fetch("/uploadcrop", {
       method: "POST",
       headers: {

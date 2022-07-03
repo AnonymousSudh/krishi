@@ -12,6 +12,7 @@ import signup from "./login/Signup"
 import logout from "./components/Logout"
 import Loading from "./components/Loading"
 import YourCrop from "./components/YourCrop"
+import category_crops from "./components/Category_crops";
 
 import './style/login.css'
 // import './style/navbar.css'
@@ -32,7 +33,7 @@ function App() {
         <Route exact path="/about" component={About}/>
         <Route exact path="/ContactUs" component={ContactUs}/>
         <Route exact path={"/Sell_crops"} component={Sell_crops}/>
-        <Route exact path={"/Buy_crops"} component={Buy_crops}/>
+        {/* <Route exact path={"/Buy_crops"} component={Buy_crops}/> */}
         <Route exact path={"/Enter_details"} component={extra_information}/>
         <Route exact path={"/Adminpanel"} component={Adminpanel}/>
         <Route exact path={"/signup_email"} component={signup}/>
@@ -40,6 +41,7 @@ function App() {
         <Route exact path="/logout" component={logout}/>
         <Route exact path="/loading" component={Loading}/>
         <Route exact path="/YourCrops" component={YourCrop}/>
+        <Route exact path={"/Buy_crops"} component={category_crops}/>
 
       </Switch>
     

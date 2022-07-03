@@ -38,7 +38,7 @@ const Buy_crops = () => {
       <div className='showDataa'>
         <div className="tabledata">
 
-
+ 
           {/* {console.log(result)} */}
 
           {result.map((val) => {

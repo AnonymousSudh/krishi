@@ -17,36 +17,12 @@ const allSelledCrop = require("../model/sell_crop_schema")
 const admin_categoty_schema = require("../model/admin_category_listSchema")
 
 const authenticate = require("../middleware/authenticate");
-// const admin_crop_list = require("../model/admin_crop_listingschema")
-// const admin_varietywithcropid_list = require("../model/admin_crop_varietyschema")
-// require('../crop/buycrop')
-// require('./buyauth');
-
 router.use(cookieParser())
-
-// import { useNavigate,useHistory } from 'react-router-dom';
-
-// port= process.env.PORT; 
-// port= 5000;
-
-// router.get("/",(req,res)=>{
-//     res.send("hello from the express router from router/auth file")
-// });
-// router.get("/home", (req,res)=>{
-//     res.send("hello from the home us page of express router from router/auth file")
-// });
-// router.get("/signin",(req,res)=>{
-//     res.send("hello from the express side")
-// });
-// router.get("/signup",(req,res)=>{
-//     res.send("hello from the express side")
-// });
-
 
 
 // creating a post method for signup page , so that user data may get save to our database
 
-router.post("/signup", async (req, res) => {
+router.post("/signInWithGmail", async (req, res) => {
 
     // console.log(req.body);
     const google_data = req.body;
@@ -60,66 +36,130 @@ router.post("/signup", async (req, res) => {
 
 
     const pre_email = await userList.findOne({ email: email })
+    console.log(pre_email);
 
     if (!pre_email) {
 
-        const user = await userList({
-            name, email, imageuri, google_token
-        }).save();
-        // localStorage.setItem()
+        if (user_google_data.email == "mauryasudhanshu930@gmail.com") {
+            // res.status(205)
 
-        res.cookie("google_token", google_token, { // here we storing our token in cookies
-            expires: new Date(Date.now() + 25892000000),
-            httpOnly: true
 
-        })
-        
-        res.cookie("userid", user._id, { // here we storing our token in cookies
-            expires: new Date(Date.now() + 25892000000),
-            httpOnly: true
+            const user = await userList({
+                name, email, imageuri, google_token
+            }).save();
 
-        })
-        if (user_google_data.email === "mauryasudhanshu930@gmail.com") {
-            res.status(205).send();
+            res.cookie("google_token", google_token, { // here we storing our token in cookies
+                expires: new Date(Date.now() + 25892000000),
+                httpOnly: true
+
+            })
+
+
+
+            console.log(user);
+            res.status(205).send(user._id);
+            // }
+
+        } else {
+
+            const user = await userList({
+                name, email, imageuri, google_token
+            }).save();
+            // localStorage.setItem()
+
+            res.cookie("google_token", google_token, { // here we storing our token in cookies
+                expires: new Date(Date.now() + 25892000000),
+                httpOnly: true
+
+            })
+
+            res.cookie("userid", user._id, { // here we storing our userid in cookies
+                expires: new Date(Date.now() + 25892000000),
+                httpOnly: true
+
+            })
+
+
+
+            res.status(203).send(user._id);
         }
 
-        res.status(203).send();
 
     }
 
-    if (pre_email) {
+    if (pre_email) { // for old user
+        console.log("i am  at 91 line");
+        console.log(pre_email);
+        if (pre_email.email == "mauryasudhanshu930@gmail.com") {
+            try {
+                console.log("i am  at 76 line");
+                console.log(pre_email.email);
+                console.log(pre_email._id);
+                res.status(205).send(pre_email._id);
+                // res.redirect('/adminpanel').send(pre_email._id);
+                console.log("i am  at 99 line");
 
-        if (pre_email.email === "mauryasudhanshu930@gmail.com") {
-            res.status(205).send();
-        }
+                const update = await userList.updateOne({ _id: pre_email._id }, {
+                    $set: {
+                        google_token
+                    }
+                }
+                );
+                console.log("i am  at 107 line");
 
-        const update = await userList.updateOne({ _id: pre_email._id }, {
-            $set: {
-                google_token
+                // res.cookie("google_token", google_token, { // here we storing our token in cookies
+                //     expires: new Date(Date.now() + 25892000000),
+                //     httpOnly: true
+                // });
+                // console.log("i am  at 114 line");
+
+                console.log("at auth.js line no 105`");
+                console.log(pre_email);
+                // res.cookie("userid", pre_email._id, { // here we storing our token in cookies
+                //     expires: new Date(Date.now() + 25892000000),
+                //     httpOnly: true
+
+                // })
+
+            } catch (error) {
+                console.log(error);
             }
         }
-        );
 
-        // console.log(update);
 
-        res.cookie("google_token", google_token, { // here we storing our token in cookies
-            expires: new Date(Date.now() + 25892000000),
-            httpOnly: true
-        });
-        console.log("at auth.js line no 105`");
-        console.log(pre_email);
-        res.cookie("userid", pre_email._id, { // here we storing our token in cookies
-            expires: new Date(Date.now() + 25892000000),
-            httpOnly: true
 
-        })
-        res.status(201).send(pre_email._id);
+
+
+        else {
+
+            const update = await userList.updateOne({ _id: pre_email._id }, {
+                $set: {
+                    google_token
+                }
+            }
+            );
+
+            // console.log(update);
+
+            res.cookie("google_token", google_token, { // here we storing our token in cookies
+                expires: new Date(Date.now() + 25892000000),
+                httpOnly: true
+            });
+            console.log("at auth.js line no 105`");
+            console.log(pre_email);
+            res.cookie("userid", pre_email._id, { // here we storing our token in cookies
+                expires: new Date(Date.now() + 25892000000),
+                httpOnly: true
+
+            })
+            res.status(201).send(pre_email._id);
+
+        }
 
     }
 
 
 
-   
 
 });
 
@@ -177,7 +217,7 @@ router.post("/signin", async (req, res) => {
 
 
             })
-            
+
             res.cookie("userid", result._id, {
                 expires: new Date(Date.now() + 25892000000),
                 httpOnly: true
@@ -203,7 +243,7 @@ router.post("/signin", async (req, res) => {
         //     // });
         //     res.status(200).send();
 
-       
+
         // }
         else {
             res.status(400).json({ error: "user error" })
@@ -270,7 +310,7 @@ router.post('/Enter_details', authenticate, async (req, res) => {
 })
 
 router.get('/about', authenticate, (req, res) => {
-    
+
 
     // console.log(req.rootUser);
     res.send(req.rootUser);
@@ -278,16 +318,16 @@ router.get('/about', authenticate, (req, res) => {
 })
 
 
-router.get('/weather',authenticate, async (req, res) => {
+router.get('/weather', authenticate, async (req, res) => {
 
     // console.log(`this is all the data from auth ${req.rootUser}`);
     // try {
-        const address = req.rootUser;
-        // res.status(200).send(req.rootUser);
+    const address = req.rootUser;
+    // res.status(200).send(req.rootUser);
 
     //     // const address = await userList.findOne(/);
     //     // console.log(address);
-        res.status(200).send(address);
+    res.status(200).send(address);
 
     // } catch (err) {
     //     console.log(err);
@@ -298,27 +338,27 @@ router.get('/weather',authenticate, async (req, res) => {
 
 
 
-router.get('/logout' ,(req,res)=>{
+router.get('/logout', (req, res) => {
 
-    res.clearCookie('jwtoken', {path:'/'});
-    res.clearCookie('google_token', {path:'/'});
+    res.clearCookie('jwtoken', { path: '/' });
+    res.clearCookie('google_token', { path: '/' });
     res.status(200).send();
-    
+
 
 
 })
 
 
 
-router.get('/getUserCrop', async(req,res)=>{
+router.get('/getUserCrop', async (req, res) => {
     const userid = req.cookies.userid;
     console.log(userid);
     // console.log("hello");
-    const data = await allSelledCrop.find({seller_id:userid})
-    .populate("category_id","category_Name")
-    .populate("seller_id","address")
-    .populate("crop_name_id","crop")
-    .populate("variety_id","variety")
+    const data = await allSelledCrop.find({ seller_id: userid })
+        .populate("category_id", "category_Name")
+        .populate("seller_id", "address")
+        .populate("crop_name_id", "crop")
+        .populate("variety_id", "variety")
 
     console.log(data);
     // localStorage.getItem("userid")
@@ -329,9 +369,9 @@ router.get('/getUserCrop', async(req,res)=>{
 
 })
 
-router.get('/home',authenticate,(req,res)=>{
+router.get('/home', authenticate, (req, res) => {
 
-    
+
 
 })
 
@@ -340,35 +380,40 @@ router.get('/home',authenticate,(req,res)=>{
 
 
 
-router.post("/updateOwnCrop", async(req,res)=>{ //at updateCardCrop 
+router.post("/updateOwnCrop", async (req, res) => { //at updateCardCrop 
     try {
-        
-   
-    // const {quantity,price,id,unit}= req.body;
-    // console.log(`this is user id at updateowncrop ${id}`)
+        // const {id} = req.body
+
+        const { quantity, price, id, unit } = req.body;
+        // console.log(`this is user id at updateowncrop ${id}`)
 
 
 
-    const updatedata = await allSelledCrop.updateOne({ _id:id},{
-        $set:{
-            price:price,
-            quantity:quantity,
-            unit:unit
-        }
-    })
-    // console.log(updatedata);
+        const updatedata = await allSelledCrop.updateOne({ _id: id }, {
+            $set: {
+                price: price,
+                quantity: quantity,
+                unit: unit
+            }
+        })
+        // console.log(updatedata);
 
 
-} catch (error) {
-    console.log(error);
-        
-}
+    } catch (error) {
+        console.log(error);
+
+    }
 
 
 })
 
 
+router.get("/getcategory",async(req,res)=>{
+    const data = await admin_categoty_schema.distinct("category_Name");
+    console.log(data);
 
+    res.send(data);
+})
 
 
 

@@ -35,7 +35,7 @@ function Navbar() {
     // }
     const setprofilepic = () => {
         const profileurl = localStorage.getItem("profie_pic_url");
-        console.log(profileurl);
+        console.log(`this is profile url from navbar ${profileurl}`);
         if (profileurl) {
             // document.getElementsByClassName('profile')[0].style= background
             setBackground(profileurl)

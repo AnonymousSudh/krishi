@@ -20,7 +20,7 @@ const Login = () => {
         // console.log(response.profileObj.imageUrl);
         localStorage.setItem("profie_pic_url", response.profileObj.imageUrl)
 
-        const res = await fetch("/signup", {
+        const res = await fetch("/signInWithGmail", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -31,12 +31,6 @@ const Login = () => {
             })
         });
 
-        const data = await res.json();
-        console.log("this is userid at login.jsx line 35" );
-        console.log(data);
-        localStorage.setItem("userid", data)
-
-        console.log(`this is a response when google login happen ${res.status}`);
         if (res.status == 203) {
 
             history.push("/Enter_details");
@@ -44,10 +38,22 @@ const Login = () => {
         if (res.status == 205) {
 
             history.push("/adminpanel");
+            const data = await res.json();
+            console.log(data);
+            localStorage.setItem("adminid", data)
         }
         if (res.status == 201) {
-            history.push('/home')
+            history.push('/home') 
         }
+        // console.log("this is userid at login.jsx line 34" );
+        // console.log(res.status);
+        const data = await res.json();
+        console.log(data);
+        localStorage.setItem("userid", data)
+
+
+        console.log(`this is a response when google login happen ${res.status}`);
+       
     }
 
 

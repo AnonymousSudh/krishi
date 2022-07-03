@@ -5,6 +5,7 @@ import { useHistory, NavLink } from 'react-router-dom';
 
 
 
+
 // import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap')
 const About = () => {
     console.log("this is about page");
@@ -73,9 +74,14 @@ const About = () => {
                         </div>
 
                     </div>
-
+                    
+                   
                     <div className="info_div">
+                    <div className="cropDataList">
+                            <NavLink exact to='./YourCrops'><button className='your_crop' >Your crop</button></NavLink>
 
+                       
+                        </div>
                         <div className="default_heading">
 
                             <div className="email_heading">
@@ -123,10 +129,7 @@ const About = () => {
 
                     </div>
 
-                        <div className="cropDataList">
-                            <NavLink exact to='./YourCrops'><button >Your crop</button></NavLink>
-
-                        </div>
+                      
                 </div>
             </div>
 
