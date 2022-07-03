@@ -17,56 +17,8 @@
         flex-direction:column ;
        
     }
-    .cat_button{
-        /* border:2px solid red;  */
-    display: flex;
-    width:40vw;
+  
     
-    justify-content: space-between;
-    }
-    .grain {
-        background-color: #4CAF50; 
-        border-radius: 25px;
-        font-size: 1rem;
-        color: white;
-        border:none; 
-        border-radius:10px; 
-        padding:15px;
-        min-height:30px; 
-        min-width: 180px;
-      }
-      .grain:hover{
-        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
-      }
-      .nuts {
-        background-color: #4CAF50; /* Green */
-        border: none;
-        font-size: 1rem;
-        color: white;
-        border:none; 
-        border-radius:10px; 
-        padding:15px;
-        min-height:30px; 
-        min-width: 180px;
-      }
-      .nuts:hover{
-        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
-      }
-    
-      .oil {
-        background-color: #4CAF50; /* Green */
-        border: none;
-        font-size: 1rem;
-        color: white;
-        border:none; 
-        border-radius:10px; 
-        padding:15px;
-        min-height:30px; 
-        min-width: 180px;
-      }
-      .oil:hover{
-        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
-      }
       .line{
         display: flex;
         height: 5px;
@@ -96,3 +48,10 @@
         min-height:30px; 
         min-width: 180px;
     }
+
+.category_holder{
+  /* border: 10px solid red; */
+  display: flex;
+  max-width: 70vw;
+  flex-direction: row;
+}
