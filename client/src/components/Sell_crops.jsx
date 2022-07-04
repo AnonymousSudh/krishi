@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { useEffect } from 'react';
 // import router from '../../../server/router/auth';
 import "../style/sell_crops.css"
+import Navbar from '../components/Navbar';
 
 function Sell_crops() {
 
@@ -204,6 +205,7 @@ function Sell_crops() {
 
   return (
     <>
+      <Navbar />
       <div className="main_div">
         <div className="form_holder_div">
 
@@ -291,7 +293,7 @@ function Sell_crops() {
 
               </div>
 
-              <button onClick={submit_sell_details}>submit</button>
+              <button className='submit_sell' onClick={submit_sell_details}>submit</button>
 
             </form>
             {/* <button className='close_dialog_box' onClick={close_dialog_box}>close</button> */}

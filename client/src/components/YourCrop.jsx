@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState } from 'react'
 import { useEffect } from 'react'
-import Card2 from "../components/UpdtaeCropCard"
+import Card2 from "../components/YourCropCard"
 require('../style/yourcrop.css')
 
 function YourCrop() {

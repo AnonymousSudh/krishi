@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 // var nestedPop = require('nested-pop');
 import "../style/card.css"
-import "../style/updatecropcard.css"
+import "../style/yourcropcard.css"
 
 function Card(props) {
     const [id, setId] = useState(props._id);
@@ -13,9 +13,6 @@ function Card(props) {
     const [unit, setUnit] = useState(props.unit);
 
     // data.disabled = true;
-
-
-
     // const updateCrop = (e) => {
     //     // document.getElementById("update_btn").disabled ="true";
     //     setcrop(e.target.value);
@@ -52,7 +49,7 @@ function Card(props) {
     const updateData = async () => {
         const userid = localStorage.getItem("userid")
         // console.log(;
-        const updatedata = await fetch('/updateOwnCrop', {
+        const updatedata = await fetch('/updateOwnCrop', {  //at authjs
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -64,7 +61,26 @@ function Card(props) {
             })
 
         })
+    }
 
+    const deletecrop = async()=>{
+        // const deletedata = await findByIdandDelete(id);
+        // console.log(deletedata);
+        const deletedata = await fetch('/deleteOWnCrop', { //at authjs
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+
+                // "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                id
+            })
+
+        })
+        if(deletedata){
+            alert("data deleted")
+        }
 
     }
 
@@ -107,6 +123,11 @@ function Card(props) {
                     </div>
 
                     <button id='updatebtn' onClick={updateData}>Update</button>
+                    
+                    <div className="deletecrop">
+                        <button id='deletebtn' onClick={deletecrop}>Delete</button>
+                    </div>
+
                 </div>
 
             </div>

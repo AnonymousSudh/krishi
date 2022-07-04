@@ -1,15 +1,16 @@
 .main_div{
-    /* border: 3px solid red; */
-    height: 100vh;    
-    width: 100vw;
-    /* display: none; */
-    position: absolute;
+    height: 90vh;
     display: flex;
-    /* flex-direction: row; */
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    /* background: rgba(0,0,0,.5); */
-    /* background: rgba(0,0,0.5); */
+  background-image:url(../images/bg4.jpg);
+    /* border: 1px solid red; */
+    font-size: 16px;
+    /* height: 90vh; */
+    color: #222;
+    /* font-weight: 300; */
+      /* padding-top: 5px; */
 }
 .form_holder_div.open{
     border: 10px solid rgb(8, 4, 235);
@@ -24,12 +25,12 @@
 
 .form_holder{
   
-    width: 35vw;
-    height: 60vh;
+    width: 40vw;
+    height: 75vh;
     display: flex;
     flex-direction: column;
-    /* margin-top: -4rem; */
-    background: linear-gradient(#485448,#f7f710);
+     margin-top: 2rem; 
+    /* background: linear-gradient(#485448,#f7f710); */
     /* align-items: spa; */
     justify-content: center;
     align-items: center;
@@ -43,7 +44,7 @@
     border-radius: 10px;
     backdrop-filter: blur(25px);
 
-    border: 3px solid green ;
+    /* border: 3px solid green ; */
 }
 .input_fields{
     /* border: 1px solid red; */
@@ -62,21 +63,37 @@
 }
 .input_fields label{
     /* padding-left: 50px; */
-    margin-left: 80px
+    margin-left: 30px;
+    display: inline-block;
 
 }
 .input_fields input{
     /* padding-right: 50px; */
-    margin-right: 80px
+   
+    display: inline-block;
 }
 .close_dialog_box{
     width: 5rem;
     height: 3rem
 
 }
+.crop_price{
+    /* border: 2px solid red; */
+    width: 12vw;
+}
 
 .weight_unit{
     position: absolute;
     
     
+}
+.submit_sell{
+    margin-left: 40%; 
+    width: 150px;
+    height: 40px;
+    border-radius: 10px;
+    border: none;
+    color: rgb(12, 12, 12);
+    cursor:pointer;
+    background-color: #E9EFC0; 
 }

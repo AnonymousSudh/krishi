@@ -19,6 +19,7 @@ const admin_categoty_schema = require("../model/admin_category_listSchema")
 const admin_crop_list = require("../model/admin_crop_listingschema")
 
 const authenticate = require("../middleware/authenticate");
+const sell_crop_list = require("../model/sell_crop_schema");
 router.use(cookieParser())
 
 
@@ -438,7 +439,11 @@ router.post("/getCropForBuy", async (req, res) => {
 
 })
 
-
+router.post("/deleteOWnCrop", async(req,res)=>{
+    const{id} = req.body;
+    const deletedata = await sell_crop_list.deleteOne({_id:id});
+    console.log(deletedata);
+})
 
 
 
