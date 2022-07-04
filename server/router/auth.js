@@ -6,6 +6,7 @@ const cookieParser = require("cookie-parser");
 
 const router = express.Router();
 require('../db/connection');
+// require('../router')
 
 const feedback_list = require("../model/adminschema");
 const userList = require("../model/userschema");
@@ -23,7 +24,7 @@ router.use(cookieParser())
 
 // creating a post method for signup page , so that user data may get save to our database
 
-router.post("/signInWithGmail", async (req, res) => {
+router.post("/signInWithGmail", async (req, res) => {   //at login.jsx
 
     // console.log(req.body);
     const google_data = req.body;
@@ -35,13 +36,14 @@ router.post("/signInWithGmail", async (req, res) => {
     const name = user_google_data.name;
     const google_token = google_data.response.tokenId;
 
-
+    console.log(`the Gmail which you login  from is ${email} `);
     const pre_email = await userList.findOne({ email: email })
-    console.log(pre_email);
+    // console.log(pre_email);
 
     if (!pre_email) {
 
-        if (user_google_data.email == "mauryasudhanshu930@gmail.com") {
+        console.log(`you are login first time with above email `);
+        if (email == "mauryasudhanshu930@gmail.com") {
             // res.status(205)
 
 
@@ -58,7 +60,10 @@ router.post("/signInWithGmail", async (req, res) => {
 
 
             console.log(user);
-            res.status(205).send(user._id);
+            // return res.redirect(200,'/adminpanel')
+            // console.log("after redirect");
+            data={"userid":user._id}
+            res.status(200).send(data);
             // }
 
         } else {
@@ -68,13 +73,13 @@ router.post("/signInWithGmail", async (req, res) => {
             }).save();
             // localStorage.setItem()
 
-            res.cookie("google_token", google_token, { // here we storing our token in cookies
+            res.cookie("google_token", google_token, {      // here we storing our token in cookies
                 expires: new Date(Date.now() + 25892000000),
                 httpOnly: true
 
             })
 
-            res.cookie("userid", user._id, { // here we storing our userid in cookies
+            res.cookie("userid", user._id, {        // here we storing our userid in cookies
                 expires: new Date(Date.now() + 25892000000),
                 httpOnly: true
 
@@ -93,10 +98,10 @@ router.post("/signInWithGmail", async (req, res) => {
         console.log(pre_email);
         if (pre_email.email == "mauryasudhanshu930@gmail.com") {
             try {
-                console.log("i am  at 76 line");
+
                 console.log(pre_email.email);
                 console.log(pre_email._id);
-                res.status(205).send(pre_email._id);
+                // res.status(205).send(pre_email._id);
                 // res.redirect('/adminpanel').send(pre_email._id);
                 console.log("i am  at 99 line");
 
@@ -108,10 +113,10 @@ router.post("/signInWithGmail", async (req, res) => {
                 );
                 console.log("i am  at 107 line");
 
-                // res.cookie("google_token", google_token, { // here we storing our token in cookies
-                //     expires: new Date(Date.now() + 25892000000),
-                //     httpOnly: true
-                // });
+                res.cookie("google_token", google_token, { // here we storing our token in cookies
+                    expires: new Date(Date.now() + 25892000000),
+                    httpOnly: true
+                });
                 // console.log("i am  at 114 line");
 
                 console.log("at auth.js line no 105`");
@@ -121,6 +126,9 @@ router.post("/signInWithGmail", async (req, res) => {
                 //     httpOnly: true
 
                 // })
+
+                data={"userid":pre_email._id}
+                res.status(200).send(data);
 
             } catch (error) {
                 console.log(error);
@@ -148,12 +156,13 @@ router.post("/signInWithGmail", async (req, res) => {
             });
             console.log("at auth.js line no 105`");
             console.log(pre_email);
-            res.cookie("userid", pre_email._id, { // here we storing our token in cookies
-                expires: new Date(Date.now() + 25892000000),
-                httpOnly: true
+            // res.cookie("userid", pre_email._id, { // here we storing our token in cookies
+            //     expires: new Date(Date.now() + 25892000000),
+            //     httpOnly: true
 
-            })
-            res.status(201).send(pre_email._id);
+            // })
+            data={"userid":pre_email._id}
+            res.status(201).send(data);
 
         }
 
@@ -341,8 +350,8 @@ router.get('/weather', authenticate, async (req, res) => {
 
 router.get('/logout', (req, res) => {
 
-    res.clearCookie('jwtoken', { path: '/' });
-    res.clearCookie('google_token', { path: '/' });
+    res.clearCookie('jwtoken');
+    res.clearCookie('google_token');
     res.status(200).send();
 
 
@@ -409,7 +418,7 @@ router.post("/updateOwnCrop", async (req, res) => { //at updateCardCrop
 })
 
 
-router.get("/getcategory",async(req,res)=>{
+router.get("/getcategory", async (req, res) => {
     const data = await admin_categoty_schema.find();
     console.log(data[0].category_Name);
 
@@ -417,12 +426,12 @@ router.get("/getcategory",async(req,res)=>{
 })
 
 
-router.post("/getCropForBuy", async(req,res)=>{
+router.post("/getCropForBuy", async (req, res) => {
 
-    const {category_id} = req.body
+    const { category_id } = req.body
     // console.log(category_id);
 
-    const data = await admin_crop_list.findOne({category_id:category_id})
+    const data = await admin_crop_list.findOne({ category_id: category_id })
     // console.log(data);
 
     res.send(data.crop_Namee)

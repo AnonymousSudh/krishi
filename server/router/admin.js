@@ -14,6 +14,7 @@ router.post('/uploadcrop', async (req, res) => {
 
         // console.log(req.body);
         const { category_Name, crop_Name, variety_Name } = req.body;
+
         const category = await admin_category_list.findOne({ category_Name: category_Name })
         // const upload_cropp = await admin_crop_list.findOne({ crop_Name });
         console.log(category);
@@ -31,26 +32,12 @@ router.post('/uploadcrop', async (req, res) => {
                 crop_Namee: { name: crop_Name },
                 category_id: categoryId
             }).save();
-            // console.log("hello");
-            // console.log("this is save crop detials");
 
-            const savecrop2 = await allcrop({
-                crop:crop_Name
-            }).save();
-            console.log("this is crop2 data");
-            console.log(savecrop2);
-
-            const savevariety2 = await allvariety({
-                variety:variety_Name
-            }).save();
-
-            console.log(savecrop.crop_Namee[0]._id); // yaha to humko 0th wala he chaiye. q ki first time save hoga
-
-
-
-
+            console.log(savecrop.crop_Namee[0]._id);
             const cropid = savecrop.crop_Namee[0]._id;
-            console.log(`this is croid ${cropid}`);
+
+            console.log(`this is crop saving at admin_crop_schema ${savecrop} `);
+
 
             const savevariety = await admin_varietywithcropid_list({
                 category_ids: categoryId,
@@ -59,15 +46,34 @@ router.post('/uploadcrop', async (req, res) => {
             }).save();
 
             // console.log("this is save vaiety");
-            // console.log(savevariety);
+            console.log(`this is save vareity at admin table ${savevariety}`);
 
+            const savecrop2 = await allcrop({
+                crop: crop_Name
+            }).save();
+
+            console.log(`this is saving crop at allcrop_schema ${savecrop2}`);
+
+            const savevariety2 = await allvariety({
+                variety: variety_Name
+            }).save();
+
+            console.log(`this is savevariety at all vareity table ${savevariety2}`);
+
+
+
+
+            // console.log(`this is croid ${cropid}`);
+
+
+            res.status(200).send()
 
         }
         else { // category hai
-            // console.log("3+3");
+
             const categoryId = category._id;
-            console.log("this is category");
-            console.log(category);
+            // console.log("this is category");
+            // console.log(category);
             console.log("this is category id");
             console.log(categoryId);
 
@@ -83,189 +89,235 @@ router.post('/uploadcrop', async (req, res) => {
 
             if (!crop) {
                 const addcrop = await admin_crop_list.findOne({ category_id: categoryId })
-                console.log(addcrop);
+                // console.log(addcrop);
 
                 addcrop.crop_Namee.push({ name: crop_Name })
-                await addcrop.save();
+                const result = await addcrop.save();
+                console.log(result._id);
+                const cropid = result._id;
+                console.log(`this is adding crop in existing array ${result}`);
+
 
                 const savecrop2 = await allcrop({
-                    crop:crop_Name
+                    crop: crop_Name
                 }).save();
-    
-                // const savevariety2 = await allvariety({
-                //     variety:variety_Name
-                // })
+
+                console.log(`this is saving crop at allcrop list ${savecrop2}`);
+
+                const savevariety2 = await allvariety({
+                    variety:variety_Name
+                })
 
                 console.log(addcrop);
+
+                const savevariety = await admin_varietywithcropid_list({
+                    category_ids: categoryId,
+                    crop_id: cropid,
+                    variety_list: [{ variety_Name }]
+
+                }).save();
+
+                console.log(`this is savevariety for new crop against existing category ${savevariety}`);
+
+                res.status(200).send()
+
             }
-            else { // categoty hai and crop bhi hai
-                console.log("i am else part for variety");
-                // console.log(crop.crop_Namee);
-                // const data = crop.crop_Namee;
-                // data.find( ({name} ) => name === 'Peanuts' );
-                const cropp = crop.crop_Namee.find(({ name }) => name === crop_Name)
-                console.log("this is that cropid which we use at variety");
-                console.log(cropp);
-                console.log(cropp._id); //uski cropid hai jo value maine ui pe dali hai
-                const varietylist = await admin_varietywithcropid_list.findOne({ crop_id: cropp._id});
-                if (!varietylist) {
-                    const newvarity = admin_varietywithcropid_list({
-                        category_ids: categoryId, crop_id: cropp._id, variety_list: [{ variety_Name: variety_Name }]
+            else { // categoty hai and crop bhi hai but variety nahi hai admin_variety_schema me
 
-                    }).save();
+                // console.log("i am else part for variety");
+                // // console.log(crop.crop_Namee);
+                // // const data = crop.crop_Namee;
+                // // data.find( ({name} ) => name === 'Peanuts' );
+                // const cropp = crop.crop_Namee.find(({ name }) => name === crop_Name)
+                // // console.log("this is that cropid which we use at variety");
+                // console.log(cropp);
+                // console.log(`this is id for existing crop in existing category but we want to add variety ${cropp._id}`); //uski cropid hai jo value maine ui pe dali hai
 
-                    // const savecrop2 = await allcrop({
-                    //     crop:crop_Name
-                    // })
-        
-                    // const savevariety3 = await allvariety({
-                    //     variety:variety_Name
-                    // })
+              
 
-                    // const savecrop2 = await allcrop({
-                    //     crop:crop_Name
-                    // })
-        
-                    const savevariety2 = await allvariety({
-                        variety:variety_Name
-                    }).save();
-                } 
-                else {
-                    const addvariety = await admin_varietywithcropid_list.findOne({
-                        variety_list: {
-                            $elemMatch: { variety_Name: variety_Name }
-                        }
-                    });
-                    if (!addvariety) {
-                        varietylist.variety_list.push({ variety_Name: variety_Name })
-                        await varietylist.save();
 
-                        // const savecrop2 = await allcrop({
-                        //     crop:crop_Name
-                        // })
-            
-                        const savevariety2 = await allvariety({
-                            variety:variety_Name
-                        }).save();
+                const addvariety = await admin_varietywithcropid_list.findOne({
+                    variety_list: {
+                        $elemMatch: { variety_Name: variety_Name }
                     }
-                    else{
-                        res.status(401).send();
+                })
+                if (!addvariety) {
+                    const addcrop = await admin_varietywithcropid_list.findOne({ category_id:categoryId })
 
-                    }
+                    // const varietylist = await admin_varietywithcropid_list.findOne({ crop_id: cropp._id });
+                    // console.log(varietylist);
+                    // console.log("hello");
 
 
+
+                    addcrop.variety_list.push({ variety_Name: variety_Name })
+                    const result = await addcrop.save();
+                    console.log(`this is save variety ${result}`);
+                    console.log(result._id);
+
+                    res.status(200).send();
                 }
-
-                // const varietylist = await admin_varietywithcropid_list.findOne({
-
-                //     // { variety_list: [{variety_Name }]}
-                //     variety_list: {
-                //         $elemMatch: { variety_Name: variety_Name }
-                //     }
-                // });
-                // console.log(`this is variety list ${varietylist}`);
-
+                if (addvariety) {
+                    res.status(401).send();
+                }
                 // if (!varietylist) {
-                //     // console.log("i am not present");
-                //     // const savevariety = await admin_varietywithcropid_list.
-                //     console.log("inside !variety");
-                //     console.log(cropp._id);
-                //     const addvariety = await admin_varietywithcropid_list.findOne({ crop_id: cropp._id })
-
-                //     console.log("this is ");
-                //     console.log(addvariety);
-
-                //     if(!addvariety){
-                //         const newvarity = admin_varietywithcropid_list({
-                //             category_ids:categoryId,crop_id:cropp._id,variety_list:[{variety_Name:variety_Name}]
+                //     const newvarity = admin_varietywithcropid_list({
+                //         category_ids: categoryId, crop_id: cropp._id, variety_list: [{ variety_Name: variety_Name }]
 
                 //     }).save();
 
+                //     // const savecrop2 = await allcrop({
+                //     //     crop:crop_Name
+                //     // })
+
+                //     // const savevariety3 = await allvariety({
+                //     //     variety:variety_Name
+                //     // })
+
+                //     // const savecrop2 = await allcrop({
+                //     //     crop:crop_Name
+                //     // })
+
+                //     const savevariety2 = await allvariety({
+                //         variety:variety_Name
+                //     }).save();
+                // } 
+                // else {
+                //     const addvariety = await admin_varietywithcropid_list.findOne({
+                //         variety_list: {
+                //             $elemMatch: { variety_Name: variety_Name }
+                //         }
+                //     });
+                //     if (!addvariety) {
+                //         varietylist.variety_list.push({ variety_Name: variety_Name })
+                //         await varietylist.save();
+
+                //         // const savecrop2 = await allcrop({
+                //         //     crop:crop_Name
+                //         // })
+
+                //         const savevariety2 = await allvariety({
+                //             variety:variety_Name
+                //         }).save();
                 //     }
                 //     else{
-                //         const kuchbhi = await admin_varietywithcropid_list.find
-                //         addvariety.variety_list.push({ variety_Name: variety_Name })
-                //         await addvariety.save();
+                //         res.status(401).send();
 
                 //     }
-                // const newvarity = admin_varietywithcropid_list({
-
-                // })
 
 
-                // console.log(addvariety);
-                // if(savevariety){
-                //     res.status(200)
-                // }
             }
+
+            // const varietylist = await admin_varietywithcropid_list.findOne({
+
+            //     // { variety_list: [{variety_Name }]}
+            //     variety_list: {
+            //         $elemMatch: { variety_Name: variety_Name }
+            //     }
+            // });
+            // console.log(`this is variety list ${varietylist}`);
+
+            // if (!varietylist) {
+            //     // console.log("i am not present");
+            //     // const savevariety = await admin_varietywithcropid_list.
+            //     console.log("inside !variety");
+            //     console.log(cropp._id);
+            //     const addvariety = await admin_varietywithcropid_list.findOne({ crop_id: cropp._id })
+
+            //     console.log("this is ");
+            //     console.log(addvariety);
+
+            //     if(!addvariety){
+            //         const newvarity = admin_varietywithcropid_list({
+            //             category_ids:categoryId,crop_id:cropp._id,variety_list:[{variety_Name:variety_Name}]
+
+            //     }).save();
+
+            //     }
+            //     else{
+            //         const kuchbhi = await admin_varietywithcropid_list.find
+            //         addvariety.variety_list.push({ variety_Name: variety_Name })
+            //         await addvariety.save();
+
+            //     }
+            // const newvarity = admin_varietywithcropid_list({
+
+            // })
+
+
+            // console.log(addvariety);
+            // if(savevariety){
+            //     res.status(200)
+            // }
         }
+    }
 
 
 
 
-        // crop_Name: crop_Name,
-        //     category_ids: categoryId,
+    // crop_Name: crop_Name,
+    //     category_ids: categoryId,
 
-        // }).save();
-        // console.log(savecrop);
+    // }).save();
+    // console.log(savecrop);
 
-        // if (!upload_cropp) {
-        //     const savecrop = await admin_crop_list({
-        //         crop_name
-        //     }).save();
+    // if (!upload_cropp) {
+    //     const savecrop = await admin_crop_list({
+    //         crop_name
+    //     }).save();
 
-        // }
+    // }
 
-        // }
-        // if (!upload_cropp) {
+    // }
+    // if (!upload_cropp) {
 
-        //     const savecrop = await admin_crop_list({
-        //         crop_name
-        //     }).save();
+    //     const savecrop = await admin_crop_list({
+    //         crop_name
+    //     }).save();
 
-        //     const crop_id = savecrop._id;
-        //     const savevariety = await admin_varietywithcropid_list({
-        //         variety_list: [{ variety: variety_name }], crop_id
-        //     }).save();
+    //     const crop_id = savecrop._id;
+    //     const savevariety = await admin_varietywithcropid_list({
+    //         variety_list: [{ variety: variety_name }], crop_id
+    //     }).save();
 
-        // console.log(savecrop);
-        // console.log(savevariety);
-        // }
-        // if (upload_cropp) {
-        //     const cropid = upload_cropp._id;
-        //     const variety = await admin_varietywithcropid_list.findOne({ crop_id: cropid }) // crop hai variety_table me and is crop ko pane ke liye.. ye line likha gaya hai.
-        //     console.log(variety);
-        //     const alreadyexist = await admin_varietywithcropid_list.findOne({
-        //         variety_list: {
-        //             $elemMatch: { variety: variety_name }
-        //         }
-        //     })
-        //     console.log(`this is already exist ${alreadyexist}`); ``
-        //     if (!alreadyexist) {
+    // console.log(savecrop);
+    // console.log(savevariety);
+    // }
+    // if (upload_cropp) {
+    //     const cropid = upload_cropp._id;
+    //     const variety = await admin_varietywithcropid_list.findOne({ crop_id: cropid }) // crop hai variety_table me and is crop ko pane ke liye.. ye line likha gaya hai.
+    //     console.log(variety);
+    //     const alreadyexist = await admin_varietywithcropid_list.findOne({
+    //         variety_list: {
+    //             $elemMatch: { variety: variety_name }
+    //         }
+    //     })
+    //     console.log(`this is already exist ${alreadyexist}`); ``
+    //     if (!alreadyexist) {
 
-        //         try {
-        // const saveanotervariety = await admin_varietywithcropid_list.updateOne(variety,
-        //     {
-        //         $push: {
-        //             variety_list: [{ variety: variety_name }]
-        //         }
-        //     })
-        // // this.variety_list = this.variety_list.concat({ variety: variety_name })
-        // // await this.save();
-        // // console.log(saveanotervariety);
-        //         } catch (error) {
-        //             console.log(error);
-        //         }
-
-
-        //     }
+    //         try {
+    // const saveanotervariety = await admin_varietywithcropid_list.updateOne(variety,
+    //     {
+    //         $push: {
+    //             variety_list: [{ variety: variety_name }]
+    //         }
+    //     })
+    // // this.variety_list = this.variety_list.concat({ variety: variety_name })
+    // // await this.save();
+    // // console.log(saveanotervariety);
+    //         } catch (error) {
+    //             console.log(error);
+    //         }
 
 
-        // }
-    } catch (error) {
-    console.log(error);
+    //     }
 
-}
+
+    // }
+    catch (error) {
+        console.log(error);
+
+    }
 })
 
 router.get('/fetch_crop_id', async (req, res) => {

@@ -3,10 +3,10 @@ require("../style/categorycard.css")
 
 function CategoryCard(props) {
 
-
+ 
     const showCrop=()=>{
         // console.log(props._id);
-        localStorage.setItem("buy_variety_id" ,props._id)
+        localStorage.setItem("buy_category_id" ,props._id)
 
     }
     return (

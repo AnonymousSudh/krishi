@@ -16,7 +16,7 @@ function Adminpanel() {
     // console.log(crop_namee);
     // console.log(variety_name);
  
-    const uploadcrop = await fetch("/uploadcrop", {
+    const uploadcrop = await fetch("/uploadcrop", {  //at admin.js
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -25,12 +25,22 @@ function Adminpanel() {
       body: JSON.stringify({
         crop_Name, category_Name, variety_Name
       })
-    });
-    // console.log("hello");
+    }); 
+
     // console.log(uploadcrop.status);
     if (uploadcrop.status == 401) {
       alert("Already uploaded");
     }
+    if (uploadcrop.status == 200) {
+      // alert("Already uploaded");
+      alert("Crop Uploaded");
+    }
+
+
+
+
+
+
 
 
   }

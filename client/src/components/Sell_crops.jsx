@@ -14,7 +14,7 @@ function Sell_crops() {
   const [categoryList, setcategoryList] = useState([]);
   const [variety_data, setvariety_data] = useState([]);
 
-  const [categoryid,setcategoryid] = useState([]);
+  const [categoryid, setcategoryid] = useState([]);
   const [cropid, setcropid] = useState([]);
   const [varietyid, setvarietyid] = useState([]);
 
@@ -104,8 +104,8 @@ function Sell_crops() {
 
       },
       body: JSON.stringify({
-        crop_id,crop
-    })
+        crop_id, crop
+      })
     });
 
     const data = await varietyname.json();
@@ -121,44 +121,44 @@ function Sell_crops() {
   }
 
   const getvarietyid = async () => {
-      const varietyname = document.getElementById('variety_data').value
-      console.log(variety_data);
-      console.log(varietyname);
-  
-      const dd = variety_data.find(({ variety_Name }) => variety_Name === varietyname)
-      // console.log("this is variety id of selcetion");
-      // console.log(dd._id);
-      localStorage.setItem("admin_variety_id", dd._id)
-  
-      const setNewVarietyId = await fetch('/getnewvarietyid', {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-  
-        },
-        body: JSON.stringify({
-          // crop_id,crop
-          varietyname
+    const varietyname = document.getElementById('variety_data').value
+    console.log(variety_data);
+    console.log(varietyname);
+
+    const dd = variety_data.find(({ variety_Name }) => variety_Name === varietyname)
+    // console.log("this is variety id of selcetion");
+    // console.log(dd._id);
+    localStorage.setItem("admin_variety_id", dd._id)
+
+    const setNewVarietyId = await fetch('/getnewvarietyid', {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+
+      },
+      body: JSON.stringify({
+        // crop_id,crop
+        varietyname
       })
-      });
+    });
 
-      const newvariety =await setNewVarietyId.json();
-      console.log("this is vareity data");
-      console.log(newvariety);
-      localStorage.setItem("variety_id",newvariety)
-
-
+    const newvariety = await setNewVarietyId.json();
+    console.log("this is vareity data");
+    console.log(newvariety);
+    localStorage.setItem("variety_id", newvariety)
 
 
 
 
-    }
 
-    const setunit=()=>{
-      const data = document.getElementById("unit").value
-      console.log(data);
-      setUnit(data)
-    }
+
+  }
+
+  const setunit = () => {
+    const data = document.getElementById("unit").value
+    console.log(data);
+    setUnit(data)
+  }
 
   const submit_sell_details = async (event) => {
     event.preventDefault();
@@ -181,7 +181,7 @@ function Sell_crops() {
 
       },
       body: JSON.stringify({
-        category_id,crop_id, variety_id, price, quantity,unit
+        category_id, crop_id, variety_id, price, quantity, unit
       })
     });
     // console.log(res.status);
@@ -216,12 +216,12 @@ function Sell_crops() {
                 {/* <input type="text" id='crop_name' name='crop_name' value={sell_data.crop_name} 
                onChange={typevaluee} /> */}
                 <select name="categorydata" id="categorydata" onChange={selectcrop}>
-                  <option disabled hidden selected>select the crop name</option>
+                  {/* <option disabled hidden selected>select the crop name</option> */}
                   {categoryList.map((val) => {
                     // console.log(val);
                     return (
                       <>
-                        {/* <option disabled hidden selected>select the crop name</option> */}
+                        <option disabled hidden selected>select the crop name</option>
                         <option value={val.category_Name}>{val.category_Name}</option>
                       </>
                     )
@@ -234,13 +234,13 @@ function Sell_crops() {
               <div className='input_fields'>
                 <label htmlFor="crop name">Crop name :</label>
                 <select name="cropdata" id="cropdata" onChange={selectvariety}>
-                  <option disabled hidden selected>select the crop name</option>
+                  {/* <option disabled hidden selected>select the crop name</option> */}
 
 
                   {cropdata.map((val) => {
                     return (
                       <>
-                        <option disabled hidden selected>select the crop name</option>
+                        <option value="" disabled hidden selected>select the crop name</option>
                         <option value={val.name}>{val.name}</option>
                       </>
                     )
@@ -254,12 +254,12 @@ function Sell_crops() {
                 <label htmlFor="variety">Variety :</label>
                 {/* <input type="text" id='variety' name='variety' value={sell_data.variety} onChange={typevaluee} /> */}
                 <select name="varietydata" id="variety_data" onChange={getvarietyid}>
-                  <option disabled hidden selected >select variety name</option>
+                  {/* <option disabled hidden selected >select variety name</option> */}
                   {
                     variety_data.map((val) => {
                       return (
                         <>
-                          <option disabled hidden selected >select variety name</option>
+                          <option value="" disabled hidden selected >select variety name</option>
                           <option value={val.variety_Name}>{val.variety_Name}</option>
 
                         </>

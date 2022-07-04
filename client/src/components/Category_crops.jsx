@@ -37,7 +37,7 @@ const Category_crops = () => {
 
         console.log(category);
 
-
+ 
     }
     const log = () => {
         console.log(category);
@@ -46,7 +46,7 @@ const Category_crops = () => {
     const showcrop = async () => {
 
         // alert("hello")
-        const category_id = localStorage.getItem("buy_variety_id")
+        const category_id = localStorage.getItem("buy_category_id")
 
         const getCrop = await fetch("/getCropForBuy", {
             method: "POST",

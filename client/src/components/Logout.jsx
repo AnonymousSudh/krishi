@@ -9,7 +9,7 @@ function Logout() {
     const logoutpage = async ()=>{
         try {
 
-            const res = await fetch('/logout', {
+            const res = await fetch('/logout', {    // at auth.js
                 method: "GET",
                 headers: {
                   Accept: "application/json",
@@ -17,13 +17,20 @@ function Logout() {
                 },
                 credentials:"include"
               });
-        console.log(res.status);
+
+        console.log(`this is status of logout ${res.status} `);
 
               if(res.status ===200){
                 // alert("hello")
                 localStorage.removeItem("variety_id")
                 localStorage.removeItem("crop_id")
                 localStorage.removeItem("profie_pic_url")
+                localStorage.removeItem("admin_variety_id")
+                localStorage.removeItem("admin_crop_id")
+                localStorage.removeItem("buy_variety_id")
+                localStorage.removeItem("category_id")
+                localStorage.removeItem("userid")
+
                 history.push('/')
     
             }

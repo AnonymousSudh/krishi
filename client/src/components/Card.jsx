@@ -2,7 +2,7 @@ import React from 'react'
 import "../style/card.css"
 
 function Card(props) { 
-    return (
+    return ( 
         <>
             <div className="card_div">
                 <div className='card_value'>

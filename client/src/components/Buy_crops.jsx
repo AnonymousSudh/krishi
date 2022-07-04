@@ -9,16 +9,20 @@ const Buy_crops = () => {
 
   const getallselldata = async () => {
 
+    const category_id = localStorage.getItem("buy_category_id")
+
     const res = await fetch('/getAllBuyingData', {
-      method: "GET",
+      method: "POST",
       headers: {
-        Accept: "application/json",
-        "Content-type": "application/json"
+          "Content-Type": "application/json"
 
+          // "Content-Type": "application/json"
       },
-      Credential: "include"
+      body: JSON.stringify({
+        category_id
+      })
 
-    })
+  })
     const allSellList = await res.json();
     setResult(allSellList)
     // console.log(resu);
@@ -38,7 +42,7 @@ const Buy_crops = () => {
       <div className='showDataa'>
         <div className="tabledata">
 
- 
+
           {/* {console.log(result)} */}
 
           {result.map((val) => {
