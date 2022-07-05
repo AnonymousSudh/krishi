@@ -67,7 +67,7 @@
     .main-head  input[type="text"]:focus,
     .main-head input[type="password"]:focus {
       border-bottom: 2px solid #16a085;
-      color: #16a085;
+      color: #010c0a;
       transition: 0.2s ease;
     }
     

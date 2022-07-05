@@ -12,7 +12,8 @@ import signup from "./login/Signup"
 import logout from "./components/Logout"
 import Loading from "./components/Loading"
 import YourCrop from "./components/YourCrop"
-import category_crops from "./components/Category_crops";
+import Category_crops from "./components/Category_crops";
+import Newsapi from "./components/Newsapi"
 
 import './style/login.css'
 // import './style/navbar.css'
@@ -41,7 +42,8 @@ function App() {
         <Route exact path="/logout" component={logout}/>
         <Route exact path="/loading" component={Loading}/>
         <Route exact path="/YourCrops" component={YourCrop}/>
-        <Route exact path={"/Buy_crops"} component={category_crops}/>
+        <Route exact path={"/Category_crops"} component={Category_crops}/>
+        <Route exact path={"/news"} component={Newsapi}/>
 
       </Switch>
     

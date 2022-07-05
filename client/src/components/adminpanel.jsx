@@ -1,6 +1,8 @@
 import React from 'react'
+import { useEffect } from 'react';
 import { useState } from 'react';
-import { useHistory,NavLink } from 'react-router-dom';
+import { useHistory, NavLink } from 'react-router-dom';
+require('../style/adminpanel.css')
 // impor useHistory
 
 function Adminpanel() {
@@ -8,6 +10,7 @@ function Adminpanel() {
   const [crop_Name, set_crop_name] = useState("");
   const [variety_Name, set_variety_name] = useState("");
   const [category_Name, set_category_name] = useState("");
+  const [message, setMessage] = useState([]);
 
   const history = useHistory();
 
@@ -15,7 +18,7 @@ function Adminpanel() {
     event.preventDefault();
     // console.log(crop_namee);
     // console.log(variety_name);
- 
+
     const uploadcrop = await fetch("/uploadcrop", {  //at admin.js
       method: "POST",
       headers: {
@@ -25,7 +28,7 @@ function Adminpanel() {
       body: JSON.stringify({
         crop_Name, category_Name, variety_Name
       })
-    }); 
+    });
 
     // console.log(uploadcrop.status);
     if (uploadcrop.status == 401) {
@@ -34,6 +37,9 @@ function Adminpanel() {
     if (uploadcrop.status == 200) {
       // alert("Already uploaded");
       alert("Crop Uploaded");
+    }
+    if (uploadcrop.status == 402) {
+      alert("fill all data")
     }
 
 
@@ -51,6 +57,36 @@ function Adminpanel() {
     // history.push("/");
 
   }
+
+
+  const showMessage = async () => {
+    const res = await fetch('/showmsg', {  // at admin
+
+      method: "GET",
+      headers: {
+        Accept: "application/json",
+        "Content-type": "application/json"
+      },
+      Credentials: "include"
+    });
+
+    const result = await res.json();
+    // console.log(data);
+
+    // const msglist = 
+    setMessage(result);
+    console.log(result);
+
+
+
+
+
+
+  }
+
+  useEffect(() => {
+    showMessage();
+  },[])
 
   return (
     <>
@@ -91,6 +127,28 @@ function Adminpanel() {
       </div>
       <NavLink exact to="./logout"><button className="logout">logout</button></NavLink>
 
+
+      <div className="message">
+        {message.map((val) => {
+          // console.log(val.message);
+          return(
+
+            <> 
+             <div className="msg_container"> 
+               <h1>{val.reason}</h1>
+               <h2>{val.message}</h2> 
+
+             </div> 
+           </> 
+            )
+         } 
+
+         )} 
+
+
+
+
+      </div>
     </>
 
   )

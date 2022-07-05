@@ -1,0 +1,8 @@
+.msg_container{
+    border: 1px solid rgb(55, 255, 0);
+    width: 100vw;
+}
+.message{
+    border: 1px solid red;
+    height: 30vh;
+}

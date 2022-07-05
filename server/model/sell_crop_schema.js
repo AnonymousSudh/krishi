@@ -25,7 +25,7 @@ const sell_crop_schema = new mongoose.Schema({
     }
     , 
     price: Number,
-    quantity: Number,
+    quantity: String,
     unit:String
 
 

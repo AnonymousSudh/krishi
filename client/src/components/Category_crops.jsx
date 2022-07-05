@@ -3,6 +3,7 @@ import Navbar from './Navbar';
 import CategoryCard from './CategoryCard';
 import VarietyCard from './card/VarietyCard';
 import { useEffect, useState } from 'react';
+import { NavLink } from 'react-router-dom';
 
 const Category_crops = () => {
 
@@ -25,7 +26,7 @@ const Category_crops = () => {
 
         console.log(getcategory);
         const result = await getcategory.json()
-
+ 
         console.log(result);
 
 
@@ -117,8 +118,10 @@ const Category_crops = () => {
                     <p className='talk'>Can't find a product you are looking for?</p>
 
 
-
+<NavLink exact to="/ContactUs">
+    
                     <button className='button_talk'>Talk to us</button>
+</NavLink>
                 </div>
 
             </div>

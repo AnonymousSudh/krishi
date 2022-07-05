@@ -30,6 +30,7 @@ function Logout() {
                 localStorage.removeItem("buy_variety_id")
                 localStorage.removeItem("category_id")
                 localStorage.removeItem("userid")
+                localStorage.removeItem("adminid")
 
                 history.push('/')
     

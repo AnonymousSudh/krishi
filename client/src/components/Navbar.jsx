@@ -78,7 +78,7 @@ function Navbar() {
 
 
                     <div className="buy_sell">
-                        <NavLink exact to="/Buy_crops"> <button className='buy'>Buy</button>
+                        <NavLink exact to="/Category_crops"> <button className='buy'>Buy</button>
                         </NavLink>
 
                         <NavLink exact to ="/Sell_crops"> <button className='sell'>Sell</button></NavLink> 

@@ -32,8 +32,9 @@ const Login = () => {
         });
 
         if (res.status == 203) {
-
+            const data = await res.json();
             history.push("/Enter_details");
+            localStorage.setItem("userid", data)
         }
         if (res.status == 200) {
             console.log("i am at login.jsx ");
@@ -47,7 +48,10 @@ const Login = () => {
             history.push("/adminpanel");
         }
         if (res.status == 201) {
-            history.push('/home')
+            const data = await res.json();
+            console.log(`this is ${data} from status code ${res.status} `);
+            history.push('/home') 
+            localStorage.setItem("userid", data)
         }
         // console.log("this is userid at login.jsx line 34" );
         // console.log(res.status);
@@ -81,9 +85,9 @@ const Login = () => {
 
 
             });
-            const userid = res.json()
+            const userid = await res.json()
             console.log(userid);
-
+            localStorage.setItem("userid",userid)
             if (res.status == 200) {
                 // i think the below /home directory is that one which is present in login -> Home
                 history.push("/home")
@@ -156,84 +160,9 @@ const Login = () => {
                 </div>
             </div>
 
-            {/* 
-
-        <div className="main_container">
-            <div className='st_page'>
-                <div className="welcome_back">
-                    <div className="item">
-                        <h1>welcome Back</h1>
-                        <p>if you already have aacount please <br></br>
-                            login keep connectd with us
-                        </p>
-
-                        <button onClick={opacity1}>sign in</button>
-                    </div>
-                </div>
-
-                <div className="sign_up">
-                    <div className="item2">
-
-                        <h1>create account </h1>
-                        <GoogleLogin
-                            clientId="897223443783-1bqmg4ifk0id3mvenq5vccpp3b0mhmm1.apps.googleusercontent.com"
-                            buttonText="Login"
-                            onSuccess={responseGoogle}
-                            onFailure={responseGoogle}
-                            cookiePolicy={'single_host_origin'}
-                        /> */}
+        
 
 
-
-
-            {/* <form action="post">
-                            <input type="text" name="name"  id="name" value={user.name} onChange={typevalue} placeholder="Name" required/><br />
-
-                            <input type="email" name="email" id="email" value={user.email} onChange={typevalue} placeholder="Email" /><br />
-
-                            <input type="password" name="password" id="password" value={user.password} onChange={typevalue} placeholder="Password" />
-                            
-                            <input type="number" name="phoneno" id="phoneno" value={user.phoneno} onChange={typevalue} placeholder="Mobile" />
-                            
-                            <input type="text" name="address" id="address" value={user.address} onChange={typevalue} placeholder="address" />
-                            <br />
-                            <button onClick={send_data}> signup</button>
-
-                        </form> */}
-            {/* 
-                    </div>
-
-
-                </div>
-            </div>
-            <div className="nd_page">
-                <div className="main_container2">
-                    <div className="sign_in">
-                        <div className="item3">
-                            <h1>Sign in </h1>
-                            <input type="email" name="login_email" value={login_email} onChange={(e) => setemail(e.target.value)} placeholder="Email" />
-
-                            <input type="password" name="login_password" value={login_password} onChange={(e) => setpassword(e.target.value)} placeholder="Password" />
-                            <br /><br />
-                            <button onClick={login_user}>sign in </button>
-                        </div>
-                    </div>
-
-                    <div className="hlo_friend">
-                        <div className="item4">
-                            <h1>Hello friend</h1>
-                            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eos voluptatem facere quos?
-                            </p>
-
-                            <button onClick={opacity2}>sign up</button>
-
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div> */}
         </>
     );
 }

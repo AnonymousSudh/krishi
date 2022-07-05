@@ -123,7 +123,7 @@
   .main input[type="email"]:focus,
   .main input[type="password"]:focus {
     border-bottom: 2px solid #16a085;
-    color: #16a085;
+    color: #010907;
     transition: 0.2s ease;
   }
 

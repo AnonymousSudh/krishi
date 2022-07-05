@@ -11,8 +11,8 @@ function Sell_crops() {
     price: "", quantity: ""
   });
 
-  const [cropdata, setcropdata] = useState([]);
   const [categoryList, setcategoryList] = useState([]);
+  const [cropdata, setcropdata] = useState([]);
   const [variety_data, setvariety_data] = useState([]);
 
   const [categoryid, setcategoryid] = useState([]);
@@ -40,7 +40,7 @@ function Sell_crops() {
   // // new coding start here 
   const selectcategory = async () => {
 
-    const res = await fetch('/getcategory', {
+    const res = await fetch('/getcategory', {  // at sell auth
       method: "GET",
       headers: {
         Accept: "application/json",
@@ -218,12 +218,12 @@ function Sell_crops() {
                 {/* <input type="text" id='crop_name' name='crop_name' value={sell_data.crop_name} 
                onChange={typevaluee} /> */}
                 <select name="categorydata" id="categorydata" onChange={selectcrop}>
-                  {/* <option disabled hidden selected>select the crop name</option> */}
+                  <option disabled hidden selected>select the crop name</option>
                   {categoryList.map((val) => {
                     // console.log(val);
                     return (
                       <>
-                        <option disabled hidden selected>select the crop name</option>
+                        {/* <option disabled hidden selected>select the crop name</option> */}
                         <option value={val.category_Name}>{val.category_Name}</option>
                       </>
                     )
@@ -236,7 +236,7 @@ function Sell_crops() {
               <div className='input_fields'>
                 <label htmlFor="crop name">Crop name :</label>
                 <select name="cropdata" id="cropdata" onChange={selectvariety}>
-                  {/* <option disabled hidden selected>select the crop name</option> */}
+                  <option disabled hidden selected>select the crop name</option>
 
 
                   {cropdata.map((val) => {
@@ -256,7 +256,7 @@ function Sell_crops() {
                 <label htmlFor="variety">Variety :</label>
                 {/* <input type="text" id='variety' name='variety' value={sell_data.variety} onChange={typevaluee} /> */}
                 <select name="varietydata" id="variety_data" onChange={getvarietyid}>
-                  {/* <option disabled hidden selected >select variety name</option> */}
+                  <option disabled hidden selected >select variety name</option>
                   {
                     variety_data.map((val) => {
                       return (

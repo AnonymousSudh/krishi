@@ -1,0 +1,51 @@
+/* .newscard */
+
+.newscard {
+    border: 1px solid red;
+    width: 30vw;
+    height: 30vh;
+    /* padding-top: 20px; */
+    margin-top: 30px;
+    
+}
+.newsimg{
+    /* position: relative; */
+}
+.newsimg img {
+    width: 100%;
+
+}
+.newscardholder{
+    padding: 4px;
+}
+.newscardholder h1 {
+    /* border: 1px solid green; */
+    font-size: 40px;
+    overflow: hidden;
+    position: relative;
+
+    /* display: inline-block; */
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.news_disc{
+    /* border: 7px solid rgb(0, 34, 255); */
+    /* width: ; */
+    height: 15vh;
+    /* padding: 5px; */
+    margin: 10px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: normal;
+    /* display: inline-block; */
+
+
+
+}
+.news_disc h2{
+    font-size: 30px;
+    /* width: 180px; */
+    /* white-space: nowrap; */
+    /* overflow: hidden !important; */
+    /* text-overflow: ellipsis */
+}

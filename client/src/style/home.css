@@ -1,13 +1,43 @@
-.main_divv{
-    background-image: url(../images/1.jpg);
+.main_divv {
+    /* background-image: url(../images/1.jpg); */
     /* background-position: cover; */
     background-size: cover;
     /* border: 1px solid red; */
     width: 100vw;
     height: 90vh;
 }
-.sell_crop_div_at_home_jsx{
+
+.sell_crop_div_at_home_jsx {
     display: none;
     /* border: 10px solid rgb(11, 180, 53); */
 
+}
+
+
+.newsdiv {
+    /* border: 10px solid red; */
+    height: 80vh;
+    overflow: auto;
+    white-space: nowrap;
+    /* overflow-x:scroll */
+    /* overflow-x: scroll; */
+    overflow-y: scroll;
+}
+
+.newsholder {
+    display: flex;
+    border: 10px solid red;
+
+    margin-top: 40vh;
+    /* float: bottom; */
+    /* overflow-x: scroll; */
+    /* overflow:hidden ; */
+    overflow-y: scroll;
+
+    /* flex-direction: reo; */
+    /* flex-wrap: wrap; */
+}
+
+::-webkit-scrollbar {
+    width: 0px;
 }

@@ -1,76 +1,78 @@
-.category_header{
-    height: 90vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 22px;
-    background-image: url(../images/background.jpg);
-    }
-    
-    .category_main{
-       /* border: 2px solid grey; */
-       margin-top: -10%;
-       height: 55vh;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        flex-direction:column ;
-       
-    }
-  
-    
-      .line{
-        display: flex;
-        height: 5px;
-        width: 55vw;
-        /* border: 2px solid red; */
-        background: linear-gradient(
-          to bottom,
-          transparent 2px,
-          black 2px,
-          black 3px,
-          transparent 3px
-        );
-      }
-    .talk{
-      font-size: 2.0rem;
-    }
-    .button_talk{
-      background-color:white ; 
-      border: none;
-      color: #4CAF50;
-      font-size: 1.5rem;
-      font-weight: 400;
-        border:none; 
-        
-        border-radius:10px; 
-        padding:15px;
-        min-height:30px; 
-        min-width: 180px;
-    }
+.category_header {
+  /* border: 2px solid gr; */
+  height: 90vh;
+  display: flex;
+  max-width: 100vw;
+  justify-content: center;
+  align-items: center;
+  font-size: 22px;
+  background-image: url(../images/background.jpg);
+}
 
-.category_holder{
+.category_main {
+  /* border: 2px solid grey; */
+  margin-top: -10%;
+  height: 55vh;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+
+}
+
+
+.line {
+  display: flex;
+  height: 5px;
+  width: 55vw;
+  /* border: 2px solid red; */
+  background: linear-gradient(to bottom,
+      transparent 2px,
+      black 2px,
+      black 3px,
+      transparent 3px);
+}
+
+.talk {
+  font-size: 2.0rem;
+}
+
+.button_talk {
+  background-color: white;
+  border: none;
+  color: #4CAF50;
+  font-size: 1.5rem;
+  font-weight: 400;
+  border: none;
+
+  border-radius: 10px;
+  padding: 15px;
+  min-height: 30px;
+  min-width: 180px;
+}
+
+.category_holder {
   /* border: 10px solid red; */
   display: flex;
   width: 70vw;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 
-.categoryBtn{
-  background-color: #4CAF50; 
+.categoryBtn {
+  background-color: #4CAF50;
   border-radius: 25px;
   font-size: 1rem;
   color: white;
-  border:none; 
-  border-radius:10px; 
+  border: none;
+  border-radius: 10px;
 
   /* padding:15px; */
-  height:60px; 
+  height: 60px;
   width: 180px;
 }
 
-.cropholder{
+.cropholder {
   /* border: 1px solid red; */
   display: flex;
   flex-direction: row;

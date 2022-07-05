@@ -15,7 +15,7 @@ const allvariety = require("../model/allvariety")
 
 
 
-router.get("/getcategory", async (req, res) => {
+router.get("/getcategory", async (req, res) => {  // at sell_crops
     // console.log("inside router");
     const data = await admin_category_schema.find();
     // console.log(data);
@@ -23,25 +23,35 @@ router.get("/getcategory", async (req, res) => {
 })
 
 
-router.post('/getcrop', async (req, res) => {
+router.post('/getcrop', async (req, res) => {  // at sell_crops
     const { categoryname, categoryid } = req.body;
     // console.log(categoryname);
     // console.log(categoryid);
     const data = await admin_crop_list.findOne({ category_id: categoryid })
     console.log("this is data.crop_name");
-    console.log(data.crop_Namee);
-    res.status(200).send(data.crop_Namee)
+    // console.log(data.crop_Namee);
+    var alldata = data.crop_Namee
+    alldata.unshift({name: ' '})
+    console.log(alldata);
+    // console.log(data2);
+
+    // res.status(200).send(data.crop_Namee)
+    res.status(200).send(alldata)
 
 })
 
 router.post("/getvariety", async (req, res) => { 
     const { crop_id,crop } = req.body;
     // console.log("inside getvariety server");
-    console.log(crop_id);
+    console.log(`this is selected crop id ${crop_id}`);
     const data = await admin_varietywithcropid_list.findOne({ crop_id: crop_id });
-    const data2 = await allcrop.findOne({ crop: crop });
+    // console.log(data);
+    const data2 = await allcrop.findOne({ crop: crop});
     console.log(data2._id);
     const uniqueCropId =  data2._id;
+    data.variety_list.unshift(" ");
+    // console.log(uniqueCropId);
+    // console.log(data);
     const array = [uniqueCropId,data.variety_list]
 
     // console.log(data.variety_list);
@@ -85,8 +95,14 @@ router.post("/Sell_crops", async (req, res) => {
             unit
 
         }).save();
+        console.log("i am at sell auth");
+        console.log(userr);
 
-        res.json({ message: req.body })
+        if(userr){
+            res.status(200).send();
+        }
+        // res.json({ message: req.body })
+
 
         // console.log(userr);
     } catch (err) {

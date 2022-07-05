@@ -99,7 +99,7 @@ function Weather() {
             <div className='temp_box'>
 
                 <h1 className='temp'>{ }</h1>
-                <h1>'c</h1>
+                <h1> °C</h1>
             </div>
             <div className='address_box'>
                 <h3 className='curr_address'>var</h3>

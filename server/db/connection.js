@@ -19,17 +19,6 @@ mongoose.connect(db,{
 .then(()=>console.log("connected succesfully"))
 .catch((err)=> console.log(err));
 
-// mongoose.adminn = mongoose.createConnection(db_admin,{
-//     useNewUrlParser: true,
-//     useUnifiedTopology: true,
-//     // useCreateIndex: true,
-//     // useFindAndModify: false
-
-// })
-
-
-// .then(()=>console.log("connected succesfully"))
-// // .catch((err)=> console.log(err));
 
 module.exports =mongoose;
 

@@ -1,8 +1,38 @@
 import React from 'react'
 import '../style/Contact.css'
 import Navbar from '../components/Navbar';
+import { useState } from 'react';
 
 function ContactUs() {
+  const [reason , setreason] = useState("");
+  const [message , setMessage] = useState("");
+ 
+
+  const submit = async()=>{
+
+    // console.log(reason);
+    // console.log(message);
+    const userid = localStorage.getItem("userid")
+    // console.log(userid);
+
+    const res = await fetch('/submitmsg', {  // at admin.js
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+
+      },
+      body: JSON.stringify({
+        reason,message,userid
+      })
+    })
+
+    if(res.status ==200){
+      alert("Message send")
+    }
+
+  }
+
+
   return (
     <>
       <Navbar />
@@ -15,14 +45,11 @@ function ContactUs() {
 
             <p className='cleft_p' style={{ color: '#16a085' }}>Hello,lets get in touch</p>
 
-            <input type="text" name="username" placeholder="Username" />
+            <input type="text" name="text1" placeholder="Reason for contact" value={reason} onChange={(e)=>setreason(e.target.value)}  />
+            <input type="text" name="text2" placeholder="Meassage"  value={message} onChange={(e)=>setMessage(e.target.value)}/>
 
-            <input type="text" name="number" placeholder="enter 10 digit mobile no." />
-            <input type="text" name="email" placeholder="E-mail" />
-            <input type="text" name="text1" placeholder="Reason for contact" />
-            <input type="text" name="text2" placeholder="Meassage" />
-
-            <input type="submit" name="signup_submit" value="Send message" />
+            {/* <input type="submit" name="signup_submit" value="Send message" /> */}
+            <button className='cbutton' onClick={submit}> Send message</button>
           </div>
 
           <div className="cright">

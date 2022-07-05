@@ -5,15 +5,22 @@ const admin_varietywithcropid_list = require("../model/admin_crop_varietyschema"
 const admin_category_list = require('../model/admin_category_listSchema')
 const allcrop = require("../model/allcrop");
 const allvariety = require("../model/allvariety");
+const message_list = require("../model/admin_message_schema")
 
 
-router.post('/uploadcrop', async (req, res) => {
+
+router.post('/uploadcrop', async (req, res) => {   // at adminpanel.jsx
 
     try {
 
 
         // console.log(req.body);
         const { category_Name, crop_Name, variety_Name } = req.body;
+
+        if(!category_Name || !crop_Name || !variety_Name){
+            return res.status(402).send();
+
+        }
 
         const category = await admin_category_list.findOne({ category_Name: category_Name })
         // const upload_cropp = await admin_crop_list.findOne({ crop_Name });
@@ -92,10 +99,25 @@ router.post('/uploadcrop', async (req, res) => {
                 // console.log(addcrop);
 
                 addcrop.crop_Namee.push({ name: crop_Name })
+                // console.log("hh");
+                // console.log(addcrop);
+                // console.log("hh");
+                const result2 = addcrop.crop_Namee.find(({ name }) => name === crop_Name);
+                // console.log(result2);
+                // const crop = await admin_crop_list.findOne({
+
+                //     crop_Namee: {
+                //         $elemMatch: { name: crop_Name }
+                //     }
+                // });
+                // console.log("gg");
+// console.log(crop);
+// console.log("gg");
                 const result = await addcrop.save();
-                console.log(result._id);
-                const cropid = result._id;
-                console.log(`this is adding crop in existing array ${result}`);
+                // console.log(result._id);
+                const cropid = result2._id;
+                console.log(cropid);
+                console.log(`this is new added crop data in existing array ${result}`);
 
 
                 const savecrop2 = await allcrop({
@@ -106,9 +128,8 @@ router.post('/uploadcrop', async (req, res) => {
 
                 const savevariety2 = await allvariety({
                     variety:variety_Name
-                })
+                }).save();
 
-                console.log(addcrop);
 
                 const savevariety = await admin_varietywithcropid_list({
                     category_ids: categoryId,
@@ -254,66 +275,6 @@ router.post('/uploadcrop', async (req, res) => {
 
 
 
-
-    // crop_Name: crop_Name,
-    //     category_ids: categoryId,
-
-    // }).save();
-    // console.log(savecrop);
-
-    // if (!upload_cropp) {
-    //     const savecrop = await admin_crop_list({
-    //         crop_name
-    //     }).save();
-
-    // }
-
-    // }
-    // if (!upload_cropp) {
-
-    //     const savecrop = await admin_crop_list({
-    //         crop_name
-    //     }).save();
-
-    //     const crop_id = savecrop._id;
-    //     const savevariety = await admin_varietywithcropid_list({
-    //         variety_list: [{ variety: variety_name }], crop_id
-    //     }).save();
-
-    // console.log(savecrop);
-    // console.log(savevariety);
-    // }
-    // if (upload_cropp) {
-    //     const cropid = upload_cropp._id;
-    //     const variety = await admin_varietywithcropid_list.findOne({ crop_id: cropid }) // crop hai variety_table me and is crop ko pane ke liye.. ye line likha gaya hai.
-    //     console.log(variety);
-    //     const alreadyexist = await admin_varietywithcropid_list.findOne({
-    //         variety_list: {
-    //             $elemMatch: { variety: variety_name }
-    //         }
-    //     })
-    //     console.log(`this is already exist ${alreadyexist}`); ``
-    //     if (!alreadyexist) {
-
-    //         try {
-    // const saveanotervariety = await admin_varietywithcropid_list.updateOne(variety,
-    //     {
-    //         $push: {
-    //             variety_list: [{ variety: variety_name }]
-    //         }
-    //     })
-    // // this.variety_list = this.variety_list.concat({ variety: variety_name })
-    // // await this.save();
-    // // console.log(saveanotervariety);
-    //         } catch (error) {
-    //             console.log(error);
-    //         }
-
-
-    //     }
-
-
-    // }
     catch (error) {
         console.log(error);
 
@@ -343,22 +304,31 @@ router.get('/getvarietyname', async (req, res) => {
     const varietyname = await admin_varietywithcropid_list
 })
 
+router.post('/submitmsg', async (req,res)=>{  //at contactus.jsx
+
+    const {message, reason ,userid} = req.body;
+
+    const savemsg = await message_list({
+        user_id:userid,
+        reason:reason,
+        message:message
+    }).save();
+    // console.log(savemsg);
+    if(savemsg){
+        res.status(200).send();
+    }
+
+})
 
 
 
-// router.post('/sendcropname', async (req, res) => {
-//     const { cropname, cropid } = req.body;
-//     // console.log(cropname);
-//     // console.log(cropid);
-//     const data = await admin_varietywithcropid_list.findOne({ crop_id: cropid }).populate("crop_id")
-//     // console.log(data.variety_list);
-//     // const getvarietyname =await admin_varietywithcropid_list.find().populate("crop_id")
-//     // console.log(getvarietyname);
-//     // console.log(getvarietyname[0].variety_list);
-//     // console.log(data.variety_listt);
-//     res.status(200).send(data.variety_listt)
-
-// })
+router.get('/showmsg' ,async (req,res)=>{
+    const msg = await message_list.find()
+    .populate("user_id" ,["name","email",])
+    console.log(msg);
+    
+    res.send(msg)
+})
 
 module.exports = router;
 
