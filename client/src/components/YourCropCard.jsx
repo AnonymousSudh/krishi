@@ -61,6 +61,10 @@ function Card(props) {
             })
 
         })
+
+        if(updatedata.status ==200){
+            alert("Crop Updated")
+        }
     }
 
     const deletecrop = async()=>{
@@ -78,7 +82,8 @@ function Card(props) {
             })
 
         })
-        if(deletedata){
+        console.log(deletedata.status);
+        if(deletedata.status ==200){
             alert("data deleted")
         }
 
@@ -86,7 +91,10 @@ function Card(props) {
 
     return (
         <>
-            <div className="card_div">
+        <div className="mainContainer_selldiv">
+
+
+            <div className="ucard_div">
                 {/* <div className='card_value'> */}
                 <div className="ownsell_data_holder">
 
@@ -117,10 +125,10 @@ function Card(props) {
 
                 <div className="ingo_btn">
 
-                    <div className="index_div">
+                    {/* <div className="index_div">
 
                         <h3 className='index'>{`this is ${props.index} index`}</h3>
-                    </div>
+                    </div> */}
 
                     <button id='updatebtn' onClick={updateData}>Update</button>
                     
@@ -130,6 +138,7 @@ function Card(props) {
 
                 </div>
 
+            </div>
             </div>
             {/* </div> */}
 

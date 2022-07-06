@@ -1,5 +1,5 @@
 .main_divv {
-    /* background-image: url(../images/1.jpg); */
+     background-image: url(../images/bg7.jpg); 
     /* background-position: cover; */
     background-size: cover;
     /* border: 1px solid red; */
@@ -16,7 +16,11 @@
 
 .newsdiv {
     /* border: 10px solid red; */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     height: 80vh;
+    width: 100vw;
     overflow: auto;
     white-space: nowrap;
     /* overflow-x:scroll */
@@ -24,9 +28,16 @@
     overflow-y: scroll;
 }
 
+.news_heading{
+    position: absolute;
+    margin-top: 35vh;
+    font-size: 2.5rem;
+    text-decoration:underline;
+}
 .newsholder {
     display: flex;
-    border: 10px solid red;
+    /* margin-top: 20%; */
+    /* border: 10px solid rgb(230, 4, 200); */
 
     margin-top: 40vh;
     /* float: bottom; */
@@ -37,6 +48,7 @@
     /* flex-direction: reo; */
     /* flex-wrap: wrap; */
 }
+
 
 ::-webkit-scrollbar {
     width: 0px;

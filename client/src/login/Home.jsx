@@ -20,10 +20,12 @@ function Home() {
           <Right_panel />
 
           <div className='main_divv'>
-            <h1>hello this is home page</h1>
+            {/* <h1>hello this is home page</h1> */}
 
             <div className="newsdiv">
+            <h1 className='news_heading'>NEWS</h1>
               <div className="newsholder">
+              {/* <h1 className='news_heading'>NEWS</h1> */}
                 <News />
 
               </div>

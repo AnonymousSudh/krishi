@@ -407,6 +407,9 @@ router.post("/updateOwnCrop", async (req, res) => { //at updateCardCrop
                 unit: unit
             }
         })
+        if(updatedata){
+            res.status(200).send();
+        }
         // console.log(updatedata);
 
 
@@ -443,6 +446,9 @@ router.post("/deleteOWnCrop", async(req,res)=>{
     const{id} = req.body;
     const deletedata = await sell_crop_list.deleteOne({_id:id});
     console.log(deletedata);
+    if(deletedata){
+        res.status(200).send()
+    }
 })
 
 

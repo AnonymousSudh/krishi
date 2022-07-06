@@ -2,7 +2,9 @@ import React from 'react'
 import { useState } from 'react'
 import { useEffect } from 'react'
 import Card2 from "../components/YourCropCard"
+import Navbar from '../components/Navbar';
 require('../style/yourcrop.css')
+
 
 function YourCrop() {
 
@@ -34,7 +36,11 @@ function YourCrop() {
 
     return (
         <>
-            <h1>hello</h1>
+        <Navbar/>
+        <div className="crop_upload_text">
+
+            <h1 classsname="crop_uploadh1">You uploaded this crops</h1>
+        </div>
             {/* {console.log(cropdata)} */}
             {cropdata.map((val ,index) => {
                 console.log(val.quantity);

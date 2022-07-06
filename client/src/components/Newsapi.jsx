@@ -41,6 +41,7 @@ function Newsapi() {
 
     return (
         <>
+        
             {news.map((val) => {
                 return (
                     <>

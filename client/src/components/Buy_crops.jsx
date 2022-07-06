@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 // import router from '../../../server/router/sellauth'
 import '../style/buy_crop.css'
 import Card from '../components/Card'
+import Navbar from './Navbar'
 
 const Buy_crops = () => {
 
@@ -14,15 +15,15 @@ const Buy_crops = () => {
     const res = await fetch('/getAllBuyingData', {
       method: "POST",
       headers: {
-          "Content-Type": "application/json"
+        "Content-Type": "application/json"
 
-          // "Content-Type": "application/json"
+        // "Content-Type": "application/json"
       },
       body: JSON.stringify({
         category_id
       })
 
-  })
+    })
     const allSellList = await res.json();
     setResult(allSellList)
     // console.log(resu);
@@ -38,7 +39,7 @@ const Buy_crops = () => {
 
   return (
     <>
-
+      <Navbar />
       <div className='showDataa'>
         <div className="tabledata">
 

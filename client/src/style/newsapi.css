@@ -1,9 +1,14 @@
 /* .newscard */
 
 .newscard {
-    border: 1px solid red;
-    width: 30vw;
-    height: 30vh;
+    border: 3px solid rgb(20, 20, 20);
+    width: 22vw;
+    margin-left: 20px;
+    border-radius: 10px;
+    /* height: 30vh; */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     /* padding-top: 20px; */
     margin-top: 30px;
     
@@ -16,7 +21,8 @@
 
 }
 .newscardholder{
-    padding: 4px;
+    background-color: rgb(244, 252, 214);
+    padding: 0px;
 }
 .newscardholder h1 {
     /* border: 1px solid green; */
