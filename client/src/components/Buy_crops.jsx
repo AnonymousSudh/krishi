@@ -10,9 +10,10 @@ const Buy_crops = () => {
 
   const getallselldata = async () => {
 
-    const category_id = localStorage.getItem("buy_category_id")
+    // const category_id = localStorage.getItem("buy_category_id")
+    const crop_id = localStorage.getItem("crop_id_at_buy")
 
-    const res = await fetch('/getAllBuyingData', {
+    const res = await fetch('/getAllBuyingData', {   //at buy auth
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -20,7 +21,7 @@ const Buy_crops = () => {
         // "Content-Type": "application/json"
       },
       body: JSON.stringify({
-        category_id
+        crop_id
       })
 
     })
@@ -50,8 +51,8 @@ const Buy_crops = () => {
             return (
               <>
                 <Card
-                  cropname={val.crop_name_id.crop}
-                  varietyname={val.variety}
+                  cropname={val.crop_name_id.crop_Namee}
+                  varietyname={val.variety_id.variety_Name}
                   quantity={val.quantity}
                   price={val.price}
                   sellername={val.seller_id.name}

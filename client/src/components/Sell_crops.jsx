@@ -49,7 +49,7 @@ function Sell_crops() {
       Credentials: "include"
     });
     const categoryList = await res.json();
-    // console.log(categoryList);
+    console.log(categoryList);
     setcategoryList(categoryList)
     // console.log(categoryList);
   }
@@ -58,7 +58,7 @@ function Sell_crops() {
   const selectcrop = async () => {
     const categoryname = document.getElementById('categorydata').value
     console.log(categoryname);
-    console.log(`this is crop which select user:- ${categoryname} `);
+    console.log(`Category select by user:- ${categoryname} `);
     const result = categoryList.find(({ category_Name }) => category_Name === categoryname);
 
     // console.log(result);
@@ -80,7 +80,7 @@ function Sell_crops() {
 
     const cropdata = await res.json();
 
-    // console.log("this is variety data");
+    console.log("this is crop data");
     console.log(cropdata);
     setcropdata(cropdata)
 
@@ -90,9 +90,9 @@ function Sell_crops() {
 
     const crop = document.getElementById("cropdata").value
     console.log(crop);
-    const result = cropdata.find(({ name }) => name == crop)
+    const result = cropdata.find(({ cropName }) => cropName == crop)
     console.log("this is cropid of selected crop");
-    console.log(result._id);
+    console.log(result);
     const crop_id = result._id;
 
     setcropid(crop_id)
@@ -110,47 +110,36 @@ function Sell_crops() {
     });
 
     const data = await varietyname.json();
-    localStorage.setItem("crop_id", data[0]);
-
-    // console.log(data[1]);
-    setvariety_data(data[1])
-    console.log("this is data at sellcrop for variety");
     console.log(data);
+    setvariety_data(data)
 
-    // console.log("this is variety data ");
-    // console.log(variety_data);
   }
 
   const getvarietyid = async () => {
     const varietyname = document.getElementById('variety_data').value
-    console.log(variety_data);
+    // console.log(variety_data);
     console.log(varietyname);
 
-    const dd = variety_data.find(({ variety_Name }) => variety_Name === varietyname)
-    // console.log("this is variety id of selcetion");
-    // console.log(dd._id);
-    localStorage.setItem("admin_variety_id", dd._id)
+    const selcetedVariety = variety_data.find(({ varietyName }) => varietyName === varietyname)
+  
+    localStorage.setItem("admin_variety_id", selcetedVariety._id)
 
-    const setNewVarietyId = await fetch('/getnewvarietyid', {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
+    // const setNewVarietyId = await fetch('/getnewvarietyid', {
+    //   method: "POST",
+    //   headers: {
+    //     "Content-Type": "application/json"
 
-      },
-      body: JSON.stringify({
-        // crop_id,crop
-        varietyname
-      })
-    });
+    //   },
+    //   body: JSON.stringify({
+    //     // crop_id,crop
+    //     varietyname
+    //   })
+    // });
 
-    const newvariety = await setNewVarietyId.json();
-    console.log("this is vareity data");
-    console.log(newvariety);
-    localStorage.setItem("variety_id", newvariety)
-
-
-
-
+    // const newvariety = await setNewVarietyId.json();
+    // console.log("this is vareity data");
+    // console.log(newvariety);
+    // localStorage.setItem("variety_id", newvariety)
 
 
   }
@@ -167,12 +156,8 @@ function Sell_crops() {
     const { price, quantity } = sell_data;
 
     const category_id = localStorage.getItem("category_id");
-    const crop_id = localStorage.getItem("crop_id");
-    const variety_id = localStorage.getItem("variety_id");
-    // console.log("hello");
-    // console.log(price);
-    // console.log(quantity);
-    // console.log(crop_id);
+    const crop_id = localStorage.getItem("admin_crop_id");
+    const variety_id = localStorage.getItem("admin_variety_id");
 
 
     const res = await fetch("/Sell_crops", {
@@ -240,15 +225,18 @@ function Sell_crops() {
 
 
                   {cropdata.map((val) => {
+
                     return (
                       <>
                         <option value="" disabled hidden selected>select the crop name</option>
-                        <option value={val.name}>{val.name}</option>
+                        <option value={val.cropName}>{val.cropName}</option>
                       </>
                     )
                   })}
 
                 </select>
+
+         
 
               </div>
 
@@ -262,7 +250,7 @@ function Sell_crops() {
                       return (
                         <>
                           <option value="" disabled hidden selected >select variety name</option>
-                          <option value={val.variety_Name}>{val.variety_Name}</option>
+                          <option value={val.varietyName}>{val.varietyName}</option>
 
                         </>
                       )

@@ -12,18 +12,13 @@ const upload_variety = new mongoose.Schema({
     category_ids:{
         type:mongoose.Schema.Types.ObjectId,
         ref:"category_list"
-    },
+    }, 
     crop_id: { 
         type: mongoose.Schema.Types.ObjectId,
         ref: "crop_list"
     },
    
-    variety_list:[
-    {
-        variety_Name: String
-
-    }
-]
+    variety_Name: String
 
 })
 

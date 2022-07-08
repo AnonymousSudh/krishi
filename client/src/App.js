@@ -14,9 +14,10 @@ import Loading from "./components/Loading"
 import YourCrop from "./components/YourCrop"
 import Category_crops from "./components/Category_crops";
 import Newsapi from "./components/Newsapi"
+import Trial from "./components/Trial"
 
 import './style/login.css'
-// import './style/navbar.css'
+
 import Signup from './login/Signup'
 
 import extra_information from "./components/extra_information";
@@ -44,6 +45,7 @@ function App() {
         <Route exact path="/YourCrops" component={YourCrop}/>
         <Route exact path={"/Category_crops"} component={Category_crops}/>
         <Route exact path={"/news"} component={Newsapi}/>
+        <Route exact path={"/trial"} component={Trial}/>
 
       </Switch>
     

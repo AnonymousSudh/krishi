@@ -5,16 +5,16 @@ const admin_varietywithcropid_list = require("../model/admin_crop_varietyschema"
 const sell_crop_schema = new mongoose.Schema({
     category_id:{
         type:mongoose.Schema.Types.ObjectId,
-        ref:"category_list"
+        ref:"category_list" 
     }, 
     crop_name_id: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'all_Crop'
-    }, 
+        ref: 'crop_list'
+    },  
     variety_id:
     {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "all_Variety"
+        ref: "variety_list"
         // autopopulate: true
 
     },

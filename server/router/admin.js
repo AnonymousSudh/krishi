@@ -3,8 +3,6 @@ const router = express.Router();
 const admin_crop_list = require("../model/admin_crop_listingschema")
 const admin_varietywithcropid_list = require("../model/admin_crop_varietyschema")
 const admin_category_list = require('../model/admin_category_listSchema')
-const allcrop = require("../model/allcrop");
-const allvariety = require("../model/allvariety");
 const message_list = require("../model/admin_message_schema")
 
 
@@ -36,12 +34,12 @@ router.post('/uploadcrop', async (req, res) => {   // at adminpanel.jsx
             // console.log(`this is category id ${categoryId}`);
             // console.log("hello");
             const savecrop = await admin_crop_list({
-                crop_Namee: { name: crop_Name },
+                crop_Namee: crop_Name ,
                 category_id: categoryId
             }).save();
 
-            console.log(savecrop.crop_Namee[0]._id);
-            const cropid = savecrop.crop_Namee[0]._id;
+            // console.log(savecrop.crop_Namee[0]._id);
+            const cropid = savecrop._id;
 
             console.log(`this is crop saving at admin_crop_schema ${savecrop} `);
 
@@ -49,29 +47,11 @@ router.post('/uploadcrop', async (req, res) => {   // at adminpanel.jsx
             const savevariety = await admin_varietywithcropid_list({
                 category_ids: categoryId,
                 crop_id: cropid,
-                variety_list: [{ variety_Name }]
+                variety_Name:  variety_Name 
             }).save();
 
             // console.log("this is save vaiety");
             console.log(`this is save vareity at admin table ${savevariety}`);
-
-            const savecrop2 = await allcrop({
-                crop: crop_Name
-            }).save();
-
-            console.log(`this is saving crop at allcrop_schema ${savecrop2}`);
-
-            const savevariety2 = await allvariety({
-                variety: variety_Name
-            }).save();
-
-            console.log(`this is savevariety at all vareity table ${savevariety2}`);
-
-
-
-
-            // console.log(`this is croid ${cropid}`);
-
 
             res.status(200).send()
 
@@ -84,57 +64,26 @@ router.post('/uploadcrop', async (req, res) => {   // at adminpanel.jsx
             console.log("this is category id");
             console.log(categoryId);
 
+            const crop = await admin_crop_list.findOne({crop_Namee:crop_Name});
 
-
-            const crop = await admin_crop_list.findOne({
-
-                crop_Namee: {
-                    $elemMatch: { name: crop_Name }
-                }
-            });
             console.log(crop);
 
             if (!crop) {
-                const addcrop = await admin_crop_list.findOne({ category_id: categoryId })
-                // console.log(addcrop);
 
-                addcrop.crop_Namee.push({ name: crop_Name })
-                // console.log("hh");
-                // console.log(addcrop);
-                // console.log("hh");
-                const result2 = addcrop.crop_Namee.find(({ name }) => name === crop_Name);
-                // console.log(result2);
-                // const crop = await admin_crop_list.findOne({
-
-                //     crop_Namee: {
-                //         $elemMatch: { name: crop_Name }
-                //     }
-                // });
-                // console.log("gg");
-// console.log(crop);
-// console.log("gg");
-                const result = await addcrop.save();
-                // console.log(result._id);
-                const cropid = result2._id;
-                console.log(cropid);
-                console.log(`this is new added crop data in existing array ${result}`);
-
-
-                const savecrop2 = await allcrop({
-                    crop: crop_Name
+                const addcrop = await admin_crop_list({
+                    category_id:categoryId,
+                    crop_Namee:crop_Name
                 }).save();
 
-                console.log(`this is saving crop at allcrop list ${savecrop2}`);
+                // console.log(`this is saving crop at allcrop list ${savecrop2}`);
+                console.log(`this is ${addcrop}`);
 
-                const savevariety2 = await allvariety({
-                    variety:variety_Name
-                }).save();
-
+                console.log(`this is crop id ${addcrop._id}`)
 
                 const savevariety = await admin_varietywithcropid_list({
                     category_ids: categoryId,
-                    crop_id: cropid,
-                    variety_list: [{ variety_Name }]
+                    crop_id: addcrop._id,
+                    variety_Name: variety_Name
 
                 }).save();
 
@@ -145,131 +94,27 @@ router.post('/uploadcrop', async (req, res) => {   // at adminpanel.jsx
             }
             else { // categoty hai and crop bhi hai but variety nahi hai admin_variety_schema me
 
-                // console.log("i am else part for variety");
-                // // console.log(crop.crop_Namee);
-                // // const data = crop.crop_Namee;
-                // // data.find( ({name} ) => name === 'Peanuts' );
-                // const cropp = crop.crop_Namee.find(({ name }) => name === crop_Name)
-                // // console.log("this is that cropid which we use at variety");
-                // console.log(cropp);
-                // console.log(`this is id for existing crop in existing category but we want to add variety ${cropp._id}`); //uski cropid hai jo value maine ui pe dali hai
-
-              
-
-
                 const addvariety = await admin_varietywithcropid_list.findOne({
-                    variety_list: {
-                        $elemMatch: { variety_Name: variety_Name }
-                    }
+                    variety_Name:variety_Name
                 })
+
                 if (!addvariety) {
-                    const addcrop = await admin_varietywithcropid_list.findOne({ category_id:categoryId })
 
-                    // const varietylist = await admin_varietywithcropid_list.findOne({ crop_id: cropp._id });
-                    // console.log(varietylist);
-                    // console.log("hello");
-
-
-
-                    addcrop.variety_list.push({ variety_Name: variety_Name })
-                    const result = await addcrop.save();
-                    console.log(`this is save variety ${result}`);
-                    console.log(result._id);
-
+                    const addnewvariety = await admin_varietywithcropid_list({
+                        category_ids: categoryId,
+                        crop_id: crop._id,
+                        variety_Name: variety_Name
+                    }).save();
                     res.status(200).send();
                 }
-                if (addvariety) {
+                else{
                     res.status(401).send();
                 }
-                // if (!varietylist) {
-                //     const newvarity = admin_varietywithcropid_list({
-                //         category_ids: categoryId, crop_id: cropp._id, variety_list: [{ variety_Name: variety_Name }]
-
-                //     }).save();
-
-                //     // const savecrop2 = await allcrop({
-                //     //     crop:crop_Name
-                //     // })
-
-                //     // const savevariety3 = await allvariety({
-                //     //     variety:variety_Name
-                //     // })
-
-                //     // const savecrop2 = await allcrop({
-                //     //     crop:crop_Name
-                //     // })
-
-                //     const savevariety2 = await allvariety({
-                //         variety:variety_Name
-                //     }).save();
-                // } 
-                // else {
-                //     const addvariety = await admin_varietywithcropid_list.findOne({
-                //         variety_list: {
-                //             $elemMatch: { variety_Name: variety_Name }
-                //         }
-                //     });
-                //     if (!addvariety) {
-                //         varietylist.variety_list.push({ variety_Name: variety_Name })
-                //         await varietylist.save();
-
-                //         // const savecrop2 = await allcrop({
-                //         //     crop:crop_Name
-                //         // })
-
-                //         const savevariety2 = await allvariety({
-                //             variety:variety_Name
-                //         }).save();
-                //     }
-                //     else{
-                //         res.status(401).send();
-
-                //     }
-
+            
 
             }
 
-            // const varietylist = await admin_varietywithcropid_list.findOne({
-
-            //     // { variety_list: [{variety_Name }]}
-            //     variety_list: {
-            //         $elemMatch: { variety_Name: variety_Name }
-            //     }
-            // });
-            // console.log(`this is variety list ${varietylist}`);
-
-            // if (!varietylist) {
-            //     // console.log("i am not present");
-            //     // const savevariety = await admin_varietywithcropid_list.
-            //     console.log("inside !variety");
-            //     console.log(cropp._id);
-            //     const addvariety = await admin_varietywithcropid_list.findOne({ crop_id: cropp._id })
-
-            //     console.log("this is ");
-            //     console.log(addvariety);
-
-            //     if(!addvariety){
-            //         const newvarity = admin_varietywithcropid_list({
-            //             category_ids:categoryId,crop_id:cropp._id,variety_list:[{variety_Name:variety_Name}]
-
-            //     }).save();
-
-            //     }
-            //     else{
-            //         const kuchbhi = await admin_varietywithcropid_list.find
-            //         addvariety.variety_list.push({ variety_Name: variety_Name })
-            //         await addvariety.save();
-
-            //     }
-            // const newvarity = admin_varietywithcropid_list({
-
-            // })
-
-
-            // console.log(addvariety);
-            // if(savevariety){
-            //     res.status(200)
-            // }
+        
         }
     }
 

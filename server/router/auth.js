@@ -10,10 +10,8 @@ require('../db/connection');
 
 const feedback_list = require("../model/adminschema");
 const userList = require("../model/userschema");
-const emaillogindata = require("../model/emailloginschema");
+// const emaillogindata = require("../model/emailloginschema");
 // const sellcrop = require('../model/sell_crop_schema')
-const allcrop = require("../model/allcrop")
-const allvariety = require("../model/allvariety")
 const allSelledCrop = require("../model/sell_crop_schema")
 const admin_categoty_schema = require("../model/admin_category_listSchema")
 const admin_crop_list = require("../model/admin_crop_listingschema")
@@ -361,15 +359,15 @@ router.get('/logout', (req, res) => {
 
 
 
-router.get('/getUserCrop', async (req, res) => {
+router.get('/getUserCrop', async (req, res) => { // yourcrop
     const userid = req.cookies.userid;
     console.log(userid);
     // console.log("hello");
     const data = await allSelledCrop.find({ seller_id: userid })
         .populate("category_id", "category_Name")
-        .populate("seller_id", "address")
-        .populate("crop_name_id", "crop")
-        .populate("variety_id", "variety")
+        // .populate("seller_id", "address")
+        .populate("crop_name_id",["crop_Namee"])
+        .populate("variety_id",["variety_Name"])
 
     console.log(data);
     // localStorage.getItem("userid")
@@ -396,9 +394,6 @@ router.post("/updateOwnCrop", async (req, res) => { //at updateCardCrop
         // const {id} = req.body
 
         const { quantity, price, id, unit } = req.body;
-        // console.log(`this is user id at updateowncrop ${id}`)
-
-
 
         const updatedata = await allSelledCrop.updateOne({ _id: id }, {
             $set: {
@@ -422,34 +417,19 @@ router.post("/updateOwnCrop", async (req, res) => { //at updateCardCrop
 })
 
 
-router.get("/getcategory", async (req, res) => {
-    const data = await admin_categoty_schema.find();
-    console.log(data[0].category_Name);
-
-    res.send(data);
-})
 
 
-router.post("/getCropForBuy", async (req, res) => {
 
-    const { category_id } = req.body
-    // console.log(category_id);
-
-    const data = await admin_crop_list.findOne({ category_id: category_id })
-    // console.log(data);
-
-    res.send(data.crop_Namee)
-
-})
-
-router.post("/deleteOWnCrop", async(req,res)=>{
+router.post("/deleteOWnCrop", async(req,res)=>{  //at yourcardcrop
     const{id} = req.body;
     const deletedata = await sell_crop_list.deleteOne({_id:id});
-    console.log(deletedata);
+    // console.log(deletedata);
     if(deletedata){
         res.status(200).send()
     }
 })
+
+
 
 
 

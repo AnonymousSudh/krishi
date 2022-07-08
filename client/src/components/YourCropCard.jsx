@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import "../style/card.css"
 import "../style/yourcropcard.css"
 
-function Card(props) {
+function YourCropCard(props) {
     const [id, setId] = useState(props._id);
     const [categoty, setCategory] = useState(props.category);
     const [crop, setcrop] = useState(props.cropname);
@@ -12,20 +12,6 @@ function Card(props) {
     const [price, setprice] = useState(props.price);
     const [unit, setUnit] = useState(props.unit);
 
-    // data.disabled = true;
-    // const updateCrop = (e) => {
-    //     // document.getElementById("update_btn").disabled ="true";
-    //     setcrop(e.target.value);
-
-
-    // }
-
-    // const updateVariety = (e) => {
-    //     // document.getElementById("update_btn").disabled ="true";
-    //     setVariety(e.target.value);
-
-
-    // }
     const updateQuantity = (e) => {
         // document.getElementById("update_btn").disabled ="true";
         setquantity(e.target.value);
@@ -67,10 +53,9 @@ function Card(props) {
         }
     }
 
-    const deletecrop = async()=>{
-        // const deletedata = await findByIdandDelete(id);
-        // console.log(deletedata);
-        const deletedata = await fetch('/deleteOWnCrop', { //at authjs
+    const deletecrop = async()=>{  
+ 
+        const deletedata = await fetch('/deleteOWnCrop', {    //at authjs
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -82,7 +67,7 @@ function Card(props) {
             })
 
         })
-        console.log(deletedata.status);
+        // console.log(deletedata.status);
         if(deletedata.status ==200){
             alert("data deleted")
         }
@@ -146,4 +131,4 @@ function Card(props) {
     )
 }
 
-export default Card
+export default YourCropCard

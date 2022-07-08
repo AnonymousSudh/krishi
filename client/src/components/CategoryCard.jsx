@@ -4,7 +4,7 @@ require("../style/categorycard.css")
 function CategoryCard(props) {
 
  
-    const showCrop=()=>{
+    const saveBuyCategoryID=()=>{
         // console.log(props._id);
         localStorage.setItem("buy_category_id" ,props._id)
 
@@ -13,7 +13,7 @@ function CategoryCard(props) {
         <>
 
             <div className='cat_button' >
-                <button className='grain' onClick={showCrop}>{props.categoryname}</button>
+                <button className='grain' onClick={saveBuyCategoryID}>{props.categoryname}</button>
             </div>
 
         </>

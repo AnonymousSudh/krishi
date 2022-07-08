@@ -1,21 +1,21 @@
 import '../style/category_crops.css'
 import Navbar from './Navbar';
 import CategoryCard from './CategoryCard';
-import VarietyCard from './card/VarietyCard';
+import CropCard from './card/CropCardForBuy';
 import { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 
 const Category_crops = () => {
 
     const [category, setCategory] = useState([]);
-    const [variety, setVariety] = useState([]);
+    const [crop, setCrop] = useState([]);
 
 
     const fetchCategory = async () => {
 
-        const getcategory = await fetch("/getcategory", {
+        const getcategory = await fetch("/getcategory", {  // at buy auth
             method: "GET",
-            headers: {
+            headers: { 
                 Accept: "application/json",
                 "Content-type": "application/json"
 
@@ -24,7 +24,7 @@ const Category_crops = () => {
 
         })
 
-        console.log(getcategory);
+        // console.log(getcategory);
         const result = await getcategory.json()
  
         console.log(result);
@@ -40,16 +40,13 @@ const Category_crops = () => {
 
  
     }
-    const log = () => {
-        console.log(category);
-    }
 
     const showcrop = async () => {
 
         // alert("hello")
         const category_id = localStorage.getItem("buy_category_id")
 
-        const getCrop = await fetch("/getCropForBuy", {
+        const getCrop = await fetch("/getCropForBuy", {   // at butauth
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -62,7 +59,7 @@ const Category_crops = () => {
 
         const data = await getCrop.json()
         console.log(data);
-        setVariety(data)
+        setCrop(data)
 
     }
 
@@ -101,11 +98,12 @@ const Category_crops = () => {
                     <div className='line'></div>
 
                     <div className="cropholder">
-                        {variety.map((val) => {
+                        {crop.map((val) => {
                             return (
                                 <>
-                                    <VarietyCard
-                                        varietyName={val.name}
+                                    <CropCard
+                                        cropName={val.cropName}
+                                        _id={val._id}
                                     />
 
                                 </>

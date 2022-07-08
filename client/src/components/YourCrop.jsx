@@ -1,16 +1,17 @@
 import React from 'react'
 import { useState } from 'react'
 import { useEffect } from 'react'
-import Card2 from "../components/YourCropCard"
+import YourCropCard from "../components/YourCropCard"
 import Navbar from '../components/Navbar';
 require('../style/yourcrop.css')
 
 
 function YourCrop() {
 
-    const [cropdata, setcropdata] = useState([]);
+    const [cropdata, setCropData] = useState([]);
+
     const trial2 = async () => {
-        const res = await fetch('/getUserCrop', {
+        const res = await fetch('/getUserCrop', { //at auth
             method: "GET",
             headers: {
                 Accept: "application/json",
@@ -23,9 +24,8 @@ function YourCrop() {
 
         const croplist = await res.json();
         // console.log("hello");
-        // console.log(croplist);
-        setcropdata(croplist)
-
+        console.log(croplist);
+        setCropData(croplist)
 
     }
 
@@ -47,11 +47,11 @@ function YourCrop() {
                 return (
                 <>
     
-                <Card2
+                <YourCropCard
                     _id={val._id}
                     category={val.category_id.category_Name}
-                    cropname ={val.crop_name_id.crop}
-                    variety={val.variety_id.variety}
+                    cropname ={val.crop_name_id.crop_Namee}
+                    variety={val.variety_id.variety_Name}
                     quantity ={val.quantity}
                     price={val.price}
                     unit={val.unit}

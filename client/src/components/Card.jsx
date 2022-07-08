@@ -24,7 +24,6 @@ function Card(props) {
                         <h1>{props.sellerphoneno}</h1>
                         <h1>{props.selleremail}</h1>
                     </div>
-                    {/* <label>cropname</label> */}
                 </div>
             </div>
 

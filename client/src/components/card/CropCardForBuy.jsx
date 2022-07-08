@@ -2,24 +2,24 @@ import React from 'react'
 import { useHistory } from 'react-router-dom'
 require("../../style/varietycard.css")
 // import H
-function VarietyCard(prop) {
+function CropCardForBuy(prop) {
     const history = useHistory();
     
 
     const openBuyPanel=()=>{
-        // alert("hello")
+        localStorage.setItem("crop_id_at_buy",prop._id)
+     
         history.push("./Buy_crop");
-        // alert("hllo2")
 
     }
     return (
         <>
 
             <div className='cat_buttonn' >
-                <button className='vareitybtn' onClick={openBuyPanel}>{prop.varietyName}</button>
+                <button className='vareitybtn' onClick={openBuyPanel}>{prop.cropName}</button>
             </div>
         </>
     )
 }
 
-export default VarietyCard
+export default CropCardForBuy
