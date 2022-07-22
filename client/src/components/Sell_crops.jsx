@@ -280,7 +280,7 @@ function Sell_crops() {
                 </select>
 
               </div>
-
+ 
               <button className='submit_sell' onClick={submit_sell_details}>submit</button>
 
             </form>

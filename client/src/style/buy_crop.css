@@ -8,6 +8,11 @@
     justify-content: center;
     /* align-items: center; */
 }
+.nodata{
+    /* display: flex; */
+    /* align-items: center; */
+    /* justify-content: center; */
+}
 .tabledata{
     /* border: 10px solid red; */
     width: 50vw;

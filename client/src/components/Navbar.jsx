@@ -64,10 +64,6 @@ function Navbar() {
 
                 <div className="second">
 
-                    {/* <div className="nd_div"> */}
-
-
-
                     <div className="header_right">
                         <li style={{ listStyle: "none" }}>
                             <NavLink exact to="/home"> Home </NavLink>

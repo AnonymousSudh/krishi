@@ -89,7 +89,7 @@ const Login = () => {
             console.log(userid);
             localStorage.setItem("userid",userid)
             if (res.status == 200) {
-                // i think the below /home directory is that one which is present in login -> Home
+                
                 history.push("/home")
             }
 

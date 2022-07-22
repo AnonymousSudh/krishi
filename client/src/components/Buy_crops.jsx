@@ -3,12 +3,17 @@ import React, { useEffect, useState } from 'react'
 import '../style/buy_crop.css'
 import Card from '../components/Card'
 import Navbar from './Navbar'
+import ZeroBuyData from './Error/ZeroBuyData'
+import Loading from './Loading'
+
 
 const Buy_crops = () => {
 
   const [result, setResult] = useState([]);
+  // const [loading , setloading] = useState(true);
 
   const getallselldata = async () => {
+
 
     // const category_id = localStorage.getItem("buy_category_id")
     const crop_id = localStorage.getItem("crop_id_at_buy")
@@ -27,21 +32,38 @@ const Buy_crops = () => {
     })
     const allSellList = await res.json();
     setResult(allSellList)
-    // console.log(resu);
-    console.log(allSellList);
+    // setloading(false);
+    console.log(allSellList.length);
+    if (allSellList.length == 0) {
+      document.getElementsByClassName("tabledata")[0].style.display = 'none'
+    }
+    else {
+      document.getElementsByClassName("nodata")[0].style.display = 'none'
+    }
+
 
   }
 
   useEffect(() => {
     getallselldata();
+    
 
   }, [])
 
 
   return (
     <>
+    {/* <div className="loading">
+      <Loading/>
+    </div> */}
+    {/* <div className="nonLoading"> */}
+
       <Navbar />
       <div className='showDataa'>
+        <div className="nodata">
+
+          <ZeroBuyData />
+        </div>
         <div className="tabledata">
 
 
@@ -71,6 +93,8 @@ const Buy_crops = () => {
 
         </div>
       </div>
+    {/* </div> */}
+
     </>
   )
 }

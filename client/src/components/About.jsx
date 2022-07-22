@@ -8,18 +8,17 @@ import { useHistory, NavLink } from 'react-router-dom';
 
 // import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap')
 const About = () => {
-    console.log("this is about page");
-    // console.log(req);
 
     const history = useHistory();
 
     const [userData, setUserData] = useState({});
+    const [imgurl, setImgurl] = useState(null);
 
     const callAboutPage = async () => {
 
 
         try {
-            const res = await fetch('/about', {
+            const res = await fetch('/about', {   //at auth.js 325
                 method: "GET",
                 headers: {
                     Accept: "application/json",
@@ -48,10 +47,70 @@ const About = () => {
 
     }
 
+    const showimg = async (e) => {
+        const files = e.target.files[0];
+        console.log(files);
+     
 
+
+        const data = new FormData();
+        data.append('file', files)
+        data.append('upload_preset', 'krishi')
+        data.append("cloud_name", "trishul-industrie");
+
+        const res = await fetch("https://api.cloudinary.com/v1_1/trishul-industrie/image/upload", {
+            method: "POST",
+            mode: "cors",
+            body: data
+
+        })
+        const file = await res.json();
+        console.log(file);
+        console.log(imgurl);
+        if(file){
+            document.getElementsByClassName("chanagePhoto")[0].style.display = 'block'
+            setImgurl(file.secure_url)
+            localStorage.setItem("profie_pic_url",file.secure_url)
+            // document.getElementsByClassName("chanagePhoto")[0].style.display = 'none'
+
+        }
+        // if(imgurl){
+        //     // document.getElementsByClassName("chanagePhoto")[0].style.display = 'none'
+
+        // }
+        console.log(imgurl);
+
+        
+
+    }
+
+
+    const uploadPhoto = async () => {
+
+        const userid = localStorage.getItem("userid");
+        console.log(userid);
+        const res = await fetch('/uploadphoto', {   //at auth
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                imgurl, userid
+            })
+
+        })
+        document.getElementsByClassName("chanagePhoto")[0].style.display = 'none'
+
+    }
+
+    const showUploadbtn=()=>{
+        document.getElementsByClassName("aboutInputbtn")[0].style.display = 'block'
+        // alert("hello")
+
+    }
     useEffect(() => {
         callAboutPage();
-    }, []);
+    }, [uploadPhoto]);
 
 
 
@@ -63,24 +122,31 @@ const About = () => {
                     <div className="img_div_about">
 
                         <div className="img_container">
-
-                            <img src={userData.imageuri} alt="hello" />
-
-                            <div className="name_div_info">
-                                {/* <h2>Name</h2> */}
-                                <h3 className='name'>{userData.name}</h3>
-                                {/* <hr style="height:30px"/> */}
+                            <div className="img_holder">
+                                <img src={userData.imageuri} alt="hello" onClick={showUploadbtn} />
+                                <input className='aboutInputbtn' type="file" onChange={showimg} />
                             </div>
+                            <div className="changebtnholder">
+
+                                <button className='chanagePhoto' onClick={uploadPhoto}>upload photo</button>
+                            </div>
+
+
+                        </div>
+                        <div className="name_div_info">
+
+                            <h3 className='name'>{userData.name}</h3>
+
                         </div>
 
                     </div>
-                    
-                   
+
+
                     <div className="info_div">
-                    <div className="cropDataList">
+                        <div className="cropDataList">
                             <NavLink exact to='./YourCrops'><button className='your_crop' >Your crop</button></NavLink>
 
-                       
+
                         </div>
                         <div className="default_heading">
 
@@ -129,7 +195,7 @@ const About = () => {
 
                     </div>
 
-                      
+
                 </div>
             </div>
 

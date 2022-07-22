@@ -7,7 +7,7 @@ const admin_varietywithcropid_list = require("../model/admin_crop_varietyschema"
 const userschema = require("../model/userschema")
 const adminCategoryList = require("../model/admin_category_listSchema")
 // var nestedPop = require('nested-pop');
-
+// const cloudinary = require('cloudinary').v2
 
 
 

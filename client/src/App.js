@@ -15,6 +15,7 @@ import YourCrop from "./components/YourCrop"
 import Category_crops from "./components/Category_crops";
 import Newsapi from "./components/Newsapi"
 import Trial from "./components/Trial"
+import Error404 from "./components/Error/Error404";
 
 import './style/login.css'
 
@@ -46,6 +47,7 @@ function App() {
         <Route exact path={"/Category_crops"} component={Category_crops}/>
         <Route exact path={"/news"} component={Newsapi}/>
         <Route exact path={"/trial"} component={Trial}/>
+        <Route path="*" component={Error404} />
 
       </Switch>
     

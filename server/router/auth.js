@@ -19,6 +19,7 @@ const admin_crop_list = require("../model/admin_crop_listingschema")
 const authenticate = require("../middleware/authenticate");
 const sell_crop_list = require("../model/sell_crop_schema");
 router.use(cookieParser())
+const cloudinary = require('cloudinary').v2
 
 
 // creating a post method for signup page , so that user data may get save to our database
@@ -56,7 +57,7 @@ router.post("/signInWithGmail", async (req, res) => {   //at login.jsx
 
             })
 
-
+ 
 
             console.log(user);
             // return res.redirect(200,'/adminpanel')
@@ -199,6 +200,9 @@ router.post("/signin", async (req, res) => {
     try {
         // we are getting all the data through object descrutering 
         const { login_email, login_password } = req.body
+        console.log("hello");
+        console.log(login_email);
+        console.log(login_password);
 
         // check validataion if user fill the box or not
         if (!login_email || !login_password) {
@@ -318,11 +322,37 @@ router.post('/Enter_details', authenticate, async (req, res) => {
 
 })
 
-router.get('/about', authenticate, (req, res) => {
+router.get('/about', authenticate, (req, res) => {  //at about.jsx
 
 
     // console.log(req.rootUser);
+    cloudinary.url("sample.jpg", {width: 100, height: 150, crop: "fill", fetch_format: "auto"})
     res.send(req.rootUser);
+
+})
+
+router.post('/uploadphoto' , async(req,res)=>{
+    console.log("i am at server upload photo");
+    const{ imgurl,userid }= req.body
+
+    console.log(imgurl);
+    console.log(userid);
+
+    const seturl = await userList.updateOne({id:userid},
+        
+        [{
+            "$addFields": { "imageuri": imgurl }
+
+        }]
+        // {
+        //     "$addFields":{"imageuri":imgurl}
+        // }
+        
+        )
+    console.log(seturl);
+
+
+
 
 })
 
