@@ -2,7 +2,7 @@
   "name": "client",
   "version": "0.1.0",
   "private": true,
-  "proxy": "https://krishi-server-avrbq7mf1-anonymoussudh.vercel.app/",
+  "proxy": "https://krishi-server-mwqn.vercel.app/",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.1",
     "@testing-library/react": "^12.1.2",
