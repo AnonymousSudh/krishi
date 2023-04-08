@@ -1,10 +1,10 @@
-.main_div{
+/* .main_div{
     height: 90vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-  background-image:url(../images/bg4.jpg);
+  background-image:url('../images/bg4.jpg');
    
     font-size: 16px;
    
@@ -96,4 +96,4 @@
     color: rgb(12, 12, 12);
     cursor:pointer;
     background-color: #E9EFC0; 
-}
+} */

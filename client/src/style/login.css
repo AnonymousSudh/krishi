@@ -107,7 +107,7 @@ position: absolute;
 top: 0;
 right: 0;
 box-sizing: border-box;
-background: url(../images/bg3.jpg);
+background: url('../images/bg3.jpg');
 width: 45%;
 height: 35rem;
 background-size: cover;
