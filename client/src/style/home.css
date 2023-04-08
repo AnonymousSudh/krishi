@@ -1,4 +1,4 @@
-/* .homeSection1 {
+.homeSection1 {
    
     display: flex;
     align-items: center;
@@ -75,4 +75,4 @@
 
 ::-webkit-scrollbar {
     width: 0px;
-} */
+}

@@ -1,4 +1,4 @@
-/* :root{
+:root{
     --backgroundColourr: #EDF2F9;
     --textColour: #5e6e82;
     --blockColour:rgb(255, 255, 255);
@@ -140,4 +140,4 @@
 
 .input_fields  label{
     color: var(--inputLabel)
-} */
+}

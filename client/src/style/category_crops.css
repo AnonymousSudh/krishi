@@ -1,4 +1,4 @@
-/* .category_header {
+.category_header {
  
   height: 90vh;
   display: flex;
@@ -78,4 +78,4 @@
   flex-direction: row;
   width: 50vw;
   justify-content: space-around;
-} */
+}

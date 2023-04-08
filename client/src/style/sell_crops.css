@@ -1,4 +1,4 @@
-/* .main_div{
+.main_div{
     height: 90vh;
     display: flex;
     flex-direction: column;
@@ -96,4 +96,4 @@
     color: rgb(12, 12, 12);
     cursor:pointer;
     background-color: #E9EFC0; 
-} */
+}
