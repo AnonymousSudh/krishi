@@ -1,14 +1,14 @@
 
 .weather{
 
-    /* border: 1px solid green; */
+   
     height: 25vh;
     width: 20vw;
     display: flex;
     flex-direction: column;
     align-items: center;
     padding-top: 30px;
-    /* background-color: aqua; */
+   
     
 
   }
@@ -22,7 +22,7 @@
     
 
     font-size: 3rem;
-    /* padding-top: 0.5rem; */
+   
 }
 .weather h3{
 
@@ -35,10 +35,10 @@
 }
 .temp_box{
     display: flex;
-    /* flex-direction: ; */
+   
 }
 .address_box{
-    /* border: 1px solid red; */
+   
     display: flex;
     margin-top: 10px;
 }

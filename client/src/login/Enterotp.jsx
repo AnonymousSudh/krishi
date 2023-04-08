@@ -9,9 +9,6 @@ function Enterotp() {
     const [otp2, setotp2] = useState("");
     const [otp3, setotp3] = useState("");
     const [otp4, setotp4] = useState("");
-    // const otpvlaue = otp1 +otp2;
-    // console.log(otpvlaue);
-
     const history = useHistory();
 
 
@@ -20,7 +17,7 @@ function Enterotp() {
         console.log(otpvlaue);
         const password = localStorage.getItem('password')
         const email = localStorage.getItem('email')
-        // console.log(password);
+        
         event.preventDefault();
         const res = await fetch("/validate_otp", {
             method: "POST",

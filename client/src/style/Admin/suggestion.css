@@ -1,5 +1,5 @@
 .messagee{
-   /* border: 10px solid red; */
+  
    height: 100vh;
 }
 
@@ -23,7 +23,7 @@
 
 
 .adminDelete{
-    /* border: 1px solid red; */
+   
     width: 50%;
     display: flex;
     justify-content: space-between;

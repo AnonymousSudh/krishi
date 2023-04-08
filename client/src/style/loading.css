@@ -4,7 +4,7 @@
 
 
 .loading{
-    /* display: none; */
+   
     position: relative;
     width: 100vw;
     height: 100vh;
@@ -12,7 +12,7 @@
     background-image: url(../images/7.jpg);
     background-size: contain;
     filter: blur(2px);
-    /* z-index: 20; */
+   
 
 }
 

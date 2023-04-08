@@ -1,7 +1,5 @@
 .nmain_dcc {
   display: flex;
-  /* position: sticky; */
-  /* border: 1px solid red; */
   flex-direction: column;
   height: 40vh;
   background-image: radial-gradient(circle, #059538, #60ae53, #95c872, #c4e195, #effcbd);
@@ -10,7 +8,6 @@
 .nheader {
   display: flex;
   flex-direction: row;
-  /* border: 5px solid rgb(210, 15, 15); */
   width: 100vw;
   align-items: center;
   justify-content: space-between;
@@ -18,8 +15,6 @@
 }
 
 .nfirst {
-  /* border: 10px solid red; */
-  /* position: absolute; */
   width: 10vw;
   height: 100%;
 
@@ -30,7 +25,7 @@
 }
 
 .nbuy_sell {
-  /* border: 3px solid rgb(139, 93, 240); */
+
   display: flex;
   align-items: center;
   width: 23vw;
@@ -38,18 +33,8 @@
 }
 
 
-
-
-.nlogo {
-  /* border: 3px solid yellowgreen; */
-  /* display: flex;
-    align-items: center;
-    justify-content: center; */
-
-}
-
 .nfirst img {
-  /* border: 3px solid purple; */
+
 
   width: 17vh;
   height: 11vh;
@@ -68,7 +53,7 @@
 .nmyprofile {
   border: 2px solid black;
   border-radius: 50%;
-  /* margin-top: -18%; */
+
   padding: 1px;
   width: 50px;
   height: 50px;
@@ -79,7 +64,7 @@
 .nprofile {
   width: 50px;
   height: 50px;
-  /* border: 1px solid red; */
+
   border-radius: 50%;
   background-image: url(../images/user.png);
   background-repeat: no-repeat;
@@ -90,8 +75,7 @@
 
 
 .nsecond {
-  /* width: 85vw; */
-  /* border: 8px solid rgb(19, 79, 221); */
+
   height: 30vh;
 
   display: flex;
@@ -103,7 +87,7 @@
 }
 
 .ntext {
-  /* border: 1px solid red; */
+
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -126,15 +110,12 @@
 
 .nheader_right {
 
-  /* border: 3px solid rgb(241, 8, 132); */
   font-size: 1.6rem;
   margin-bottom: 5px;
 
 }
 
 .nheader_right li a {
-
-  /* border: 3px solid purple; */
   padding: 0rem 2rem;
   margin: 0rem 3rem;
   font-weight: bold;
@@ -158,27 +139,11 @@
 
 
 
-.myprofile:hover {}
 
-
-
-
-
-
-
-
-
-
-
-
-
-/* // responsive */
 
 @media screen and (max-width:768px) {
 
   .nheader {
-
-    /* border: 1px solid red; */
     display: flex;
     align-items: center;
 

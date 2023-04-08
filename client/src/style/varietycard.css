@@ -1,7 +1,7 @@
 .cat_buttonn {
-    /* border:2px solid red;  */
+   
     display: flex;
-    /* width: 40vw; */
+   
     flex-direction: row;
     justify-content: space-between;
 
@@ -13,7 +13,7 @@
     color: white;
     border:none; 
     border-radius:10px; 
-    /* padding:15px; */
+   
     height:60px; 
     width: 180px;
   }

@@ -9,14 +9,14 @@
     width: 60vw;
     height: 60vh;
     background-color: aqua;
-    /* border: 1px solid red; */
-    /* border-width: 10px; */
+   
+   
     border-top-width: 10px;
     border-style: solid;
-    /* border-color: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(255,55,55,1) 38%, rgba(0,212,255,1) 100%);; */
-    /* border-top: 10px solid rgb(2,0,36); */
+   
+   
     
-    /* animation-name: examp; */
+   
     animation-duration: 2s;
     animation-iteration-count: infinite;
 }
@@ -24,7 +24,7 @@
 @keyframes examp {
     from{
         border-top: 10px solid rgb(2,0,36);
-        /* boder  */
+       
     }
     to{
         border-top: 10px solid green;

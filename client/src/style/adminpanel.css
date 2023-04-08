@@ -5,29 +5,23 @@
     --inputLabel:#344050;
     
 
-    /* for black theme */
-/* 
-    --backgroundColourDark:rgba(11,23,39,0.96);
-    --textColourDark:#d8e2ef;
-    --blockColourDark:rgba(39, 57, 77, 0.97);
-    --inputLabelDark:#9da9bb; */
+   
 
-    /* --backgroundColour:rgba(11,23,39,0.96);
-    --textColour:#d8e2ef;
-    --blockColour: rgba(39, 57, 77, 0.97); */
+
+   
 
     
 }
 .admin_main {
     display: flex;
     background-color: var(--backgroundColourr);
-    /* border: 10px solid greenyellow; */
+   
     justify-content: center;
     align-items: center;
     flex-direction: column;
     width: 100vw;
     height: 100vh;
-    /* background-image: linear-gradient(to right top, #bce3c1, #a8cdac, #94b898, #81a384, #6e8e71, #6a8e6d, #658e6a, #618e66, #69a271, #70b67c, #76cb88, #7ce094); */
+   
 
 }
 
@@ -50,7 +44,7 @@
 
 .message {
     background-color: var(--backgroundColourr);
-    /* border: 1px solid red; */
+   
     height: 30vh;
 }
 
@@ -60,31 +54,31 @@
     align-items: center;
     width: 100vw;
     height: 40vh;
-    /* border: 2px solid black; */
+   
 }
 
 .activee_user {
     display: flex;
     background-color: var(--blockColour);
-    /* background-color: #5367ff; */
+   
     font-size: 2rem;
     justify-content: center;
     align-items: center;
     width: 25vw;
     height: 20vh;
-    /* border: 2px solid rgb(252, 115, 97); */
+   
 }
 
 .activee_buyer {
     display: flex;
     font-size: 2rem;
     background-color: var(--blockColour); 
-    /* background-color: #ffb61b; */
+   
     width: 25vw;
     justify-content: center;
     align-items: center;
     height: 20vh;
-    /* border: 2px solid rgb(252, 115, 97); */
+   
 }
 
 .activee_seller {
@@ -92,11 +86,11 @@
     font-size: 2rem;
     width: 25vw;
     background-color: var(--blockColour);
-    /* background-color: #00d09c; */
+   
     justify-content: center;
     align-items: center;
     height: 20vh;
-    /* border: 2px solid rgb(252, 115, 97); */
+   
 }
 
 .activee_user , .activee_seller , .activee_buyer{
@@ -106,7 +100,7 @@
 }
 
 .data_insertion {
-    /* border: 2px solid black; */
+   
     display: flex;
     justify-content: center;
     align-items: center;
@@ -139,7 +133,7 @@
 }
 
 .activee_user , .activee_seller ,.activee_buyer, .data_heading, .crop_name ,.admin_submit  , .feedback_message{
-    /* font-size: 30px; */
+   
     color: var(--textColour);
     
 }

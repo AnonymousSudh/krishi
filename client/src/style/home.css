@@ -1,5 +1,5 @@
 .homeSection1 {
-    /* border: 1px solid red; */
+   
     display: flex;
     align-items: center;
     justify-content: space-around;
@@ -7,29 +7,29 @@
 }
 
 .dynaminImage {
-    /* border: 1px solid red; */
-    /* height: 200px; */
-    /* width: 200px; */
+   
+   
+   
 }
 
 .krishi_para {
-    /* border: 1px solid red; */
+   
     height: 80%;
     width: 40%;
     text-align: center;
 }
 
 .weatherDiv {
-    /* border: 1px solid green; */
-    /* margin-left: 10% ; */
-    /* width: 100%; */
+   
+   
+   
     height: 100%;
 }
 
 .newsdiv {
-    /* border: 1px solid red; */
+   
     display: flex;
-    /* justify-content: center; */
+   
     align-items: center;
     flex-direction: column;
     height: 65vh;
@@ -40,7 +40,7 @@
 
 .newsholder {
     display: flex;
-    /* border: 1px solid red; */
+   
     max-width: 100vw;
     height: 90%;
     overflow-x: scroll;
@@ -59,7 +59,7 @@
 }
 
 .api_main_div{
-    /* border: 10px solid rgba(19, 223, 0, 0.87); */
+   
     padding: 20px 0 20px 0 ;
     margin-top: 20px;
     display: flex;

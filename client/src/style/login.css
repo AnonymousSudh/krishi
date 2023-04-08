@@ -9,7 +9,7 @@
 
 }   
 .login-boxlog { 
-  /* border: 1px solid red; */
+ 
 position:relative;
 font-size: 25px;
 padding: 0em;
@@ -67,21 +67,9 @@ transition: 0.2s ease;
 border-bottom: 2px solid #16a085;
 color: #000000;
 transition: 0.2s ease;
-} */
+}
 
-/* input[type="submit"] {
-margin-top: 28px;
-width: 120px;
-height: 32px;
-background: #16a085;
-border: none;
-border-radius: 2px;
-color: #FFF;
-font-weight: 500;
-text-transform: uppercase;
-transition: 0.1s ease;
-cursor: pointer;
-} */
+
 
 .log_submit:hover, 
 .log_submit:focus {

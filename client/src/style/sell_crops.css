@@ -5,12 +5,12 @@
     justify-content: center;
     align-items: center;
   background-image:url(../images/bg4.jpg);
-    /* border: 1px solid red; */
+   
     font-size: 16px;
-    /* height: 90vh; */
+   
     color: #222;
-    /* font-weight: 300; */
-      /* padding-top: 5px; */
+   
+     
 }
 .form_holder_div.open{
     border: 10px solid rgb(8, 4, 235);
@@ -30,45 +30,45 @@
     display: flex;
     flex-direction: column;
      margin-top: 2rem; 
-    /* background: linear-gradient(#485448,#f7f710); */
-    /* align-items: spa; */
+   
+   
     justify-content: center;
     align-items: center;
 
 
     background: rgba(255,255,255,0.1);
     box-shadow: 0 25px 45px rgba(255,255,255,0.5);
-    /* border: 1px solid rgba(255,255,255,0.5); */
+   
     border-right: 1px solid rgba(255,255,255,0.2);
     border-bottom: 1px solid rgba(255,255,255,0.2);
     border-radius: 10px;
     backdrop-filter: blur(25px);
 
-    /* border: 3px solid green ; */
+   
 }
 .input_fields{
-    /* border: 1px solid red; */
+   
     box-shadow: 1px solid red;
     width: 35vw;
     display: flex;
-    /* padding: 0px 39px; */
+   
     
-    /* align-items: spa; */
-    /* justify-content: center; */
+   
+   
     justify-content: space-between;
     font-size: 2rem;
     margin-bottom: 3rem;
-    /* margin: 0px 30px; */
-    /* flex-grow: 1(all); */
+   
+   
 }
 .input_fields label{
-    /* padding-left: 50px; */
+   
     margin-left: 30px;
     display: inline-block;
 
 }
 .input_fields input{
-    /* padding-right: 50px; */
+   
    
     display: inline-block;
 }
@@ -78,7 +78,7 @@
 
 }
 .crop_price{
-    /* border: 2px solid red; */
+   
     width: 12vw;
 }
 

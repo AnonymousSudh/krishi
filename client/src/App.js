@@ -1,5 +1,4 @@
 import { Route, Switch } from "react-router-dom";
-// require("../config.env");
 import Home from './login/Home'
 import Login from './login/Login'
 import About from './components/About'
@@ -55,7 +54,6 @@ function App() {
         <Route exact path={'/TotalUser'} component={TotalUser}/>
         <Route exact path={'/TotalSeller'} component={TotalSeller}/>
         <Route exact path={'/TotalBuyer'} component={TotalBuyer}/>
-        {/* <Route exact path={'/Tip'} component={Tip}/> */}
 
 
         <Route path="*" component={Error404} />

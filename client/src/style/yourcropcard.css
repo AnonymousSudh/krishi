@@ -1,6 +1,6 @@
 .mainContainer_selldiv{
     width: 100vw;
-    /* border: 1px solid yellow; */
+   
     display: flex;
     justify-content: center;
     align-items: center;
@@ -8,10 +8,10 @@
 }
 
 .ucard_div{
-    /* border: 1px solid red; */
-    /* width: 90%; */
-    /* margin-top: 50px; */
-    /* margin: 200px; */
+   
+   
+   
+   
     border-radius: 30px ;
     margin-bottom: 20px;
     display: flex;
@@ -25,28 +25,28 @@
 }  
 
 .ownsell_data_holder{
-    /* width: 100vw; */
-    /* border: 1px solid green; */
-    /* margin-left:0px; */
-    /* width: 90vw;     */
+   
+   
+   
+   
     margin-top: 10px;
 
     display: flex;
-    /* align-items: center; */
-    /* justify-content: space-between; */
-    /* align-items: center; */
+   
+   
+   
 }
 .ingo_btn{
 
-    /* border: 1px solid red; */
+   
     display: flex;
     width: 20vw;
     margin-top: 35px;
     margin-bottom: 4px;
-    /* justify-items: ; */
+   
     justify-content: space-between;
-    /* align-items: ; */
-    /* border: 1px solid red; */
+   
+   
 }
 #updatebtn{
     width: 70px;
