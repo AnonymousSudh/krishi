@@ -1,0 +1,9 @@
+.right_panel_div{
+    position: absolute;
+    /* border: 1px solid green; */
+    /* float: right; isse nahi hua */
+    right: 0;
+    width: 20vw;
+    
+}
+

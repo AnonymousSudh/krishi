@@ -1,0 +1,63 @@
+:root{
+    --adminNavBackground: #ffffff;
+
+
+}
+
+.adminNavDiv {
+    width: 100vw;
+    /* border: 1px solid red; */
+    height: 10vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    background-color: var(--adminNavBackground);
+    /* background-color: rgba(18, 37, 62, 0.96); */
+}
+
+.logo img {
+    /* border: 1px solid red; */
+    width: 7vw;
+    height: 9vh;
+}
+
+.leftSideNav {
+    /* border: 1px solid green; */
+    display: flex;
+    /* border: 1px solid green; */
+    width: 40vw;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.dayNight {
+    /* border: 1px solid red; */
+    position: relative;
+    width: 30px;
+    height: 20px;
+
+}
+
+.day , .night{
+    background: none;
+    border-style: none;
+}
+.dayicon, .nighticon {
+    width: 30px;
+    height: 30px;
+}
+
+.notificationIcon {
+
+    width: 30px;
+    height: 30px;
+}
+
+.night {
+    position: absolute;
+    background: none;
+    /* left: 0; */
+    /* top: 50%; */
+    /* bottom: 50%; */
+}

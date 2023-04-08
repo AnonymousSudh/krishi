@@ -1,0 +1,91 @@
+.tableContainer{
+    /* border: 1px solid red; */
+    display: flex;
+    /* height: 100vh;    */
+    /* font-size: 30px; */
+    justify-content: space-evenly;    
+}
+.imgHolderTD{
+    /* border: 1px solid green; */
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+}
+.imageProfile{
+
+    width: 40px;
+    height: 40px;
+    border-radius: 100%;
+}
+table{
+    border: 1px solid green;    
+    width: 80vw;
+    height: 50vh;
+    /* height: 80vh; */
+    /* height: fit-content; */
+}
+tr{
+    /* height: 200px; */
+    /* width: 300px; */
+
+}
+th{
+    border: 1px solid rgb(233, 26, 26);
+    /* height: 2vh; */
+    /* text-align: left; */
+
+}
+td{
+    border: 1px solid aqua;
+    /* height: 10px; */
+
+}
+.buttenHolderTD{
+        /* display: flex; */
+        /* justify-content: center; */
+        /* align-items: center; */
+        /* width: 100%; */
+        /* height: 100%; */
+}
+.buttenHolderTDDiv{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    /* border: 1px solid red; */
+
+    
+}
+.buttenHolderTDDiv button{
+    border-radius: 100%;
+    /* border-color: none; */
+    border-style: none;
+}
+.updateButton{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+}
+.updateButton:hover{
+    background-color:rgba(0, 0, 0, 0.5) ;
+    /* background: ; */
+}
+.updateImg{
+    width: 15px;
+    height: 15px;
+}
+.deleteImg{
+    width: 30px;
+    height: 30px;
+}
+.deleteButton:hover{
+    /* background-color: rgba(0,0,0,0.); */
+
+}
+
+.hh{
+    border-style: none;
+}
